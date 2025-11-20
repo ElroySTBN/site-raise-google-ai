@@ -95,8 +95,8 @@
                         <img src="1.png" alt="RaiseMed AI Architecture" class="hero-img-main">
 
                         <!-- Floating UI Card 1 -->
-                        <div class="card"
-                            style="position: absolute; top: 10%; left: -5%; padding: 1.5rem; width: 200px; animation: float 6s infinite ease-in-out;">
+                        <div class="card floating-card floating-card-1"
+                            style="position: absolute; top: 10%; left: -5%; padding: 1.5rem; width: 200px;">
                             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
                                 <div style="width: 10px; height: 10px; background: #10B981; border-radius: 50%;"></div>
                                 <span style="font-weight: 700; font-size: 0.9rem;">Nouveaux Patients</span>
@@ -106,8 +106,8 @@
                         </div>
 
                         <!-- Floating UI Card 2 -->
-                        <div class="card"
-                            style="position: absolute; bottom: 15%; right: -5%; padding: 1.5rem; width: 220px; animation: float 8s infinite ease-in-out reverse;">
+                        <div class="card floating-card floating-card-2"
+                            style="position: absolute; bottom: 15%; right: -5%; padding: 1.5rem; width: 220px;">
                             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
                                 <i data-lucide="star" style="width: 16px; color: #F59E0B; fill: #F59E0B;"></i>
                                 <span style="font-weight: 700; font-size: 0.9rem;">Note Google</span>
@@ -120,6 +120,38 @@
             </div>
         </section>
 
+        <!-- VSL Section - L'Audit Vidéo -->
+        <section class="vsl-section">
+            <div class="container">
+                <div style="text-align: center; max-width: 900px; margin: 0 auto;">
+                    <h2 class="section-title">L'Audit Vidéo</h2>
+                    <p style="font-size: 1.25rem; color: var(--text-light); margin-bottom: 3rem;">
+                        Découvrez comment nous transformons la présence digitale de nos clients en système d'acquisition automatique.
+                    </p>
+                    
+                    <div class="video-container">
+                        <div class="video-frame">
+                            <div class="video-screen">
+                                <div class="video-placeholder">
+                                    <div class="play-button">
+                                        <i data-lucide="play" style="width: 48px; height: 48px; color: #fff;"></i>
+                                    </div>
+                                    <p style="color: rgba(255, 255, 255, 0.8); margin-top: 1.5rem; font-size: 1rem;">
+                                        Vidéo Loom - Audit Personnalisé
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="video-frame-base"></div>
+                        </div>
+                    </div>
+                    
+                    <a href="contact.html" class="btn btn-primary" style="margin-top: 3rem;">
+                        Voir comment nous dominons Google Maps
+                        <i data-lucide="arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
 
         <!-- Market Reality Section (Education & Pain) -->
         <section class="stats-section" style="background: #fff; color: var(--text-main); padding: 6rem 0;">
@@ -130,51 +162,44 @@
                         que vous attendez.</p>
                 </div>
 
-                <div class="grid-12" style="align-items: center;">
-                    <div style="grid-column: span 6;">
-                        <p style="margin-bottom: 1.5rem;">
-                            Le marché a changé. Aujourd'hui, <strong>92% des décisions d'achat</strong> commencent par
-                            une recherche locale. Mais voici la vérité brutale que Google ne vous dit pas explicitement
-                            :
-                        </p>
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="margin-bottom: 1.5rem; display: flex; gap: 1rem;">
-                                <div style="min-width: 4px; background: var(--primary); height: 100%;"></div>
-                                <div>
-                                    <strong style="display: block; color: var(--secondary); font-size: 1.1rem;">La règle
-                                        du 60/40</strong>
-                                    <p style="font-size: 0.95rem; margin-bottom: 0;">Plus de 60% des clics se
-                                        concentrent exclusivement sur les <strong>3 premiers résultats</strong> de
-                                        Google Maps. Si vous êtes 4ème, vous n'existez virtuellement pas.</p>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 1.5rem; display: flex; gap: 1rem;">
-                                <div style="min-width: 4px; background: var(--primary); height: 100%;"></div>
-                                <div>
-                                    <strong
-                                        style="display: block; color: var(--secondary); font-size: 1.1rem;">L'économie
-                                        de la confiance</strong>
-                                    <p style="font-size: 0.95rem; margin-bottom: 0;">85% des Français utilisent les
-                                        fiches Google pour valider une entreprise. Une fiche sans avis récents est
-                                        perçue comme "suspecte".</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div style="grid-column: span 6;">
-                        <div class="card"
-                            style="background: var(--secondary); color: #fff; padding: 2.5rem; border: 1px solid rgba(255,255,255,0.1);">
-                            <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
-                                <i data-lucide="info" style="color: var(--accent);"></i>
-                                <h3 style="color: #fff; font-size: 1.25rem; margin: 0;">Le Conseil Expert</h3>
-                            </div>
-                            <p
-                                style="color: rgba(255,255,255,0.8); font-style: italic; border-left: 2px solid var(--accent); padding-left: 1rem;">
-                                "Pour intégrer ce trio de tête, l'algorithme Google analyse trois piliers : la
-                                Pertinence, la Proéminence (avis) et la Distance. La plupart des entreprises échouent
-                                sur la Proéminence par manque de temps. C'est là que nous intervenons."
-                            </p>
+                <div class="grid-12" style="gap: 2rem;">
+                    <!-- Data Card 1: La règle du 60/40 -->
+                    <div class="stat-data-card" style="grid-column: span 4;">
+                        <div class="stat-card-icon" style="background: linear-gradient(135deg, rgba(0, 94, 184, 0.1) 0%, rgba(56, 189, 248, 0.1) 100%);">
+                            <i data-lucide="target" style="width: 32px; height: 32px; color: var(--primary);"></i>
                         </div>
+                        <div class="stat-card-number" data-count="60">0</div>
+                        <div class="stat-card-suffix">%</div>
+                        <h3 style="color: var(--secondary); margin: 1rem 0 0.5rem 0; font-size: 1.5rem;">La Règle du 60/40</h3>
+                        <p style="font-size: 1rem; color: var(--text-light); margin: 0;">
+                            Plus de <strong>60% des clics</strong> se concentrent exclusivement sur les <strong>3 premiers résultats</strong> de Google Maps. Si vous êtes 4ème, vous n'existez virtuellement pas.
+                        </p>
+                    </div>
+
+                    <!-- Data Card 2: L'économie de la confiance -->
+                    <div class="stat-data-card" style="grid-column: span 4;">
+                        <div class="stat-card-icon" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(56, 189, 248, 0.1) 100%);">
+                            <i data-lucide="shield-check" style="width: 32px; height: 32px; color: #10B981;"></i>
+                        </div>
+                        <div class="stat-card-number" data-count="85">0</div>
+                        <div class="stat-card-suffix">%</div>
+                        <h3 style="color: var(--secondary); margin: 1rem 0 0.5rem 0; font-size: 1.5rem;">L'Économie de la Confiance</h3>
+                        <p style="font-size: 1rem; color: var(--text-light); margin: 0;">
+                            <strong>85% des Français</strong> utilisent les fiches Google pour valider une entreprise. Une fiche sans avis récents est perçue comme "suspecte".
+                        </p>
+                    </div>
+
+                    <!-- Data Card 3: 92% des décisions -->
+                    <div class="stat-data-card" style="grid-column: span 4;">
+                        <div class="stat-card-icon" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(239, 68, 68, 0.1) 100%);">
+                            <i data-lucide="search" style="width: 32px; height: 32px; color: #F59E0B;"></i>
+                        </div>
+                        <div class="stat-card-number" data-count="92">0</div>
+                        <div class="stat-card-suffix">%</div>
+                        <h3 style="color: var(--secondary); margin: 1rem 0 0.5rem 0; font-size: 1.5rem;">Recherche Locale</h3>
+                        <p style="font-size: 1rem; color: var(--text-light); margin: 0;">
+                            <strong>92% des décisions d'achat</strong> commencent par une recherche locale. Le marché a changé. Êtes-vous prêt ?
+                        </p>
                     </div>
                 </div>
             </div>
@@ -190,33 +215,33 @@
                 </div>
                 <div class="grid-12">
                     <!-- Pillar 1 -->
-                    <div class="service-card card">
+                    <div class="service-card card service-card-infrastructure">
                         <div class="card-image-container">
                             <img src="service_seo_3d.png" alt="SEO Architecture" class="card-image">
                         </div>
-                        <div class="service-icon"><i data-lucide="layers"></i></div>
+                        <div class="service-icon service-icon-infrastructure"><i data-lucide="layers"></i></div>
                         <h3>Infrastructure Numérique</h3>
                         <p><strong>(Le Socle)</strong> Nous ne nous contentons pas de "créer une fiche". Nous
                             construisons une architecture SEO complète : choix stratégique de la catégorie, optimisation
                             des 100 photos, et maillage des mots-clés invisibles.</p>
                     </div>
                     <!-- Pillar 2 -->
-                    <div class="service-card card">
+                    <div class="service-card card service-card-bouclier">
                         <div class="card-image-container">
                             <img src="service_reputation_3d.png" alt="Reputation Shield" class="card-image">
                         </div>
-                        <div class="service-icon"><i data-lucide="shield-check"></i></div>
+                        <div class="service-icon service-icon-bouclier"><i data-lucide="shield-check"></i></div>
                         <h3>Gestion de Réputation IA</h3>
                         <p><strong>(Le Bouclier)</strong> Un avis négatif sans réponse est un poison. Notre IA détecte
                             et rédige des réponses ultra-personnalisées en moins de 24h, transformant même les critiques
                             en preuves de professionnalisme.</p>
                     </div>
                     <!-- Pillar 3 -->
-                    <div class="service-card card">
+                    <div class="service-card card service-card-attaque">
                         <div class="card-image-container">
                             <img src="service_inbound_3d.png" alt="Inbound Magnet" class="card-image">
                         </div>
-                        <div class="service-icon"><i data-lucide="zap"></i></div>
+                        <div class="service-icon service-icon-attaque"><i data-lucide="zap"></i></div>
                         <h3>Inbound Physique & Digital</h3>
                         <p><strong>(L'Attaque)</strong> Nous équipons vos équipes terrain de cartes NFC connectées. Fini
                             les "oubliés". Vos clients satisfaits deviennent vos meilleurs commerciaux en un seul geste.

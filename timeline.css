@@ -121,6 +121,10 @@
 
 /* Responsive Timeline */
 @media (max-width: 768px) {
+    .timeline-container {
+        padding: 1.5rem 0;
+    }
+
     .timeline-line {
         left: 30px;
         transform: none;
@@ -129,7 +133,8 @@
     .timeline-item {
         flex-direction: row !important;
         justify-content: flex-start;
-        margin-bottom: 4rem;
+        margin-bottom: 3rem;
+        padding-left: 1.5rem;
     }
 
     .timeline-marker {
@@ -142,6 +147,7 @@
         margin-left: 80px !important;
         margin-right: 0 !important;
         text-align: left !important;
+        padding: 1.5rem;
     }
 
     .timeline-item:nth-child(odd) .timeline-list {
