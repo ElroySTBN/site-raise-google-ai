@@ -224,16 +224,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ============================================
-// VSL VIDEO PLACEHOLDER CLICK
-// ============================================
-
-const videoPlaceholder = document.querySelector('.video-placeholder');
-if (videoPlaceholder) {
-    videoPlaceholder.addEventListener('click', () => {
-        // Add your video URL or modal trigger here
-        console.log('Video placeholder clicked');
-        // Example: window.open('YOUR_VIDEO_URL', '_blank');
-    });
-}
 
