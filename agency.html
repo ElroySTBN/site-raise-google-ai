@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Cabinet | RaiseMed.IA</title>
+    <link rel="icon" href="icon RAISE NEW copie.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="timeline.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/33782492124?text=Bonjour%2C%20je%20souhaite%20obtenir%20un%20audit%20gratuit%20pour%20mon%20entreprise.%20Pouvez-vous%20m'aider%20%3F"
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactez-nous sur WhatsApp">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-4.713 1.262 1.262-4.669-0.292-0.508c-1.207-2.100-1.847-4.507-1.847-6.923 0-7.435 6.065-13.5 13.5-13.5s13.5 6.065 13.5 13.5-6.065 13.5-13.5 13.5zM21.558 18.092c-0.247-0.123-1.456-0.719-1.681-0.801s-0.39-0.123-0.554 0.123c-0.164 0.247-0.637 0.801-0.781 0.966s-0.288 0.185-0.534 0.062c-0.247-0.123-1.041-0.384-1.983-1.224-0.733-0.653-1.228-1.461-1.372-1.708s-0.015-0.38 0.108-0.503c0.111-0.11 0.247-0.288 0.370-0.432s0.164-0.247 0.247-0.411c0.082-0.164 0.041-0.308-0.021-0.432s-0.554-1.335-0.759-1.828c-0.2-0.48-0.403-0.415-0.554-0.423-0.143-0.007-0.308-0.009-0.472-0.009s-0.431 0.062-0.657 0.308c-0.226 0.247-0.863 0.843-0.863 2.056s0.884 2.385 1.007 2.549c0.123 0.164 1.726 2.634 4.181 3.693 0.584 0.251 1.040 0.401 1.395 0.513 0.587 0.186 1.121 0.16 1.543 0.097 0.471-0.070 1.456-0.595 1.661-1.171s0.205-1.069 0.144-1.171c-0.062-0.103-0.226-0.164-0.473-0.288z" />
+        </svg>
+    </a>
+
+    <div class="cursor-glow"></div>
+    <div class="mesh-background"></div>
+    <div class="grid-overlay"></div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <img src="Logo RAISE NEW.png" alt="RaiseMed.IA" height="32">
+                </a>
+                <nav class="nav">
+                    <a href="index.html">Accueil</a>
+                    <a href="agency.html">Le Cabinet</a>
+                    <a href="services.html">Solutions</a>
+                    <a href="index.html#results">Résultats</a>
+                </nav>
+                <a href="contact.html" class="btn btn-primary">Audit Stratégique</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" style="padding-bottom: 6rem;">
+            <div class="container">
+                <div class="grid-12">
+                    <div class="hero-text" style="grid-column: span 12; text-align: center; padding-right: 0;">
+                        <div
+                            style="display: inline-block; padding: 0.5rem 1rem; background: rgba(0,94,184,0.1); color: var(--primary); border-radius: 100px; font-weight: 600; font-size: 0.9rem; margin-bottom: 1.5rem;">
+                            Le Cabinet
+                        </div>
+                        <h1 style="max-width: 900px; margin: 0 auto 1.5rem auto;">
+                            L'Excellence au Service de Votre <span class="text-gradient">Croissance</span>
+                        </h1>
+                        <p style="max-width: 700px; margin: 0 auto; font-size: 1.25rem;">
+                            RaiseMed.IA est un cabinet d'intelligence digitale et locale qui transforme les entreprises
+                            en leaders de leur marché grâce à une approche data-driven et une expertise IA de pointe.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Founder Section -->
+        <section class="services-section" style="background: #fff;">
+            <div class="container">
+                <div class="grid-12" style="align-items: center; gap: 4rem;">
+                    <!-- Founder Photo -->
+                    <div class="card" style="grid-column: span 5; padding: 0; overflow: hidden; height: 500px;">
+                        <img src="Design sans titre (71).png" alt="Elroy Sitbon - Fondateur RaiseMed.IA"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+
+                    <!-- Founder Bio -->
+                    <div style="grid-column: span 7;">
+                        <div
+                            style="display: inline-block; padding: 0.5rem 1rem; background: rgba(0,94,184,0.1); color: var(--primary); border-radius: 100px; font-weight: 600; font-size: 0.85rem; margin-bottom: 1rem;">
+                            Fondateur & Directeur Stratégique
+                        </div>
+                        <h2 style="margin-bottom: 1.5rem;">Elroy Sitbon</h2>
+                        <p style="font-size: 1.125rem; margin-bottom: 1.5rem; color: var(--text-main);">
+                            Entrepreneur et expert en croissance digitale, Elroy Sitbon a fondé RaiseMed.IA avec une
+                            vision claire : <strong>démocratiser l'accès à l'intelligence artificielle pour les
+                                entreprises locales</strong>.
+                        </p>
+                        <p style="margin-bottom: 1.5rem;">
+                            Fort de plusieurs années d'expérience dans le conseil stratégique et le marketing digital,
+                            Elroy a accompagné plus de <strong>50 entreprises</strong> dans leur transformation
+                            numérique, générant plus de <strong>300 000€ de chiffre d'affaires additionnel</strong>.
+                        </p>
+                        <p style="margin-bottom: 2rem;">
+                            Sa philosophie : <em>"Le digital n'est pas une option, c'est une nécessité. Mais il doit
+                                être accessible, mesurable, et rentable."</em>
+                        </p>
+
+                        <!-- Stats -->
+                        <div style="display: flex; gap: 3rem; flex-wrap: wrap;">
+                            <div>
+                                <div
+                                    style="font-size: 2.5rem; font-weight: 700; color: var(--primary); font-family: var(--font-display);">
+                                    +50</div>
+                                <div style="font-size: 0.9rem; color: var(--text-light);">Entreprises Accompagnées
+                                </div>
+                            </div>
+                            <div>
+                                <div
+                                    style="font-size: 2.5rem; font-weight: 700; color: var(--primary); font-family: var(--font-display);">
+                                    +300k€</div>
+                                <div style="font-size: 0.9rem; color: var(--text-light);">CA Généré</div>
+                            </div>
+                            <div>
+                                <div
+                                    style="font-size: 2.5rem; font-weight: 700; color: var(--primary); font-family: var(--font-display);">
+                                    4</div>
+                                <div style="font-size: 0.9rem; color: var(--text-light);">Pays Desservis</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="services-section" style="background: var(--bg-body);">
+            <div class="container">
+                <div style="text-align: center; max-width: 800px; margin: 0 auto 4rem auto;">
+                    <h2 class="section-title">Nos Valeurs</h2>
+                    <p>Ce qui guide chaque décision, chaque stratégie, chaque résultat.</p>
+                </div>
+
+                <div class="grid-12">
+                    <!-- Value 1 -->
+                    <div class="card" style="grid-column: span 4;">
+                        <div
+                            style="width: 64px; height: 64px; background: rgba(0, 94, 184, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <i data-lucide="target" style="width: 32px; height: 32px; color: var(--primary);"></i>
+                        </div>
+                        <h3>Excellence</h3>
+                        <p>Nous ne livrons que des solutions qui dépassent les standards du marché. Chaque projet est
+                            traité comme une œuvre d'art stratégique.</p>
+                    </div>
+
+                    <!-- Value 2 -->
+                    <div class="card" style="grid-column: span 4;">
+                        <div
+                            style="width: 64px; height: 64px; background: rgba(16, 185, 129, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <i data-lucide="shield-check" style="width: 32px; height: 32px; color: #10B981;"></i>
+                        </div>
+                        <h3>Transparence</h3>
+                        <p>Pas de jargon, pas de promesses en l'air. Nous communiquons en données vérifiables et en
+                            résultats mesurables.</p>
+                    </div>
+
+                    <!-- Value 3 -->
+                    <div class="card" style="grid-column: span 4;">
+                        <div
+                            style="width: 64px; height: 64px; background: rgba(139, 92, 246, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                            <i data-lucide="zap" style="width: 32px; height: 32px; color: #8B5CF6;"></i>
+                        </div>
+                        <h3>Innovation</h3>
+                        <p>Nous investissons constamment dans les dernières technologies IA pour offrir un avantage
+                            concurrentiel inégalé à nos clients.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section class="services-section" style="background: #fff;">
+            <div class="container">
+                <div style="text-align: center; max-width: 800px; margin: 0 auto 4rem auto;">
+                    <h2 class="section-title">Ils Nous Font Confiance</h2>
+                    <p>Des entreprises de tous secteurs qui ont choisi l'excellence.</p>
+                </div>
+
+                <div style="position: relative; max-width: 900px; margin: 0 auto;">
+                    <!-- Testimonials Slider -->
+                    <div class="testimonials-slider" id="testimonialsSlider">
+                        <!-- Testimonial 1 -->
+                        <div class="testimonial-slide active">
+                            <div class="card" style="padding: 3rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                                    <div
+                                        style="width: 50px; height: 50px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 1.25rem;">
+                                        M.O
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--secondary);">M. Olry</div>
+                                        <div style="font-size: 0.9rem; color: var(--text-light);">Consultante Immobilier
+                                        </div>
+                                    </div>
+                                </div>
+                                <p
+                                    style="font-style: italic; color: var(--text-main); margin-bottom: 1rem; font-size: 1.125rem;">
+                                    "Grâce à RaiseMed.IA, je suis passée de la 6ème à la 3ème position sur Google Maps.
+                                    Le
+                                    nombre d'appels a explosé. C'est du concret, du mesurable."
+                                </p>
+                                <div style="display: flex; gap: 0.25rem;">
+                                    <i data-lucide="star" style="width: 16px; color: #F59E0B; fill: #F59E0B;"></i>
+                                    <i data-lucide="star" style="width: 16px; color: #F59E0B; fill: #F59E0B;"></i>
+                                    <i data-lucide="star" style="width: 16px; color: #F59E0B; fill: #F59E0B;"></i>
+                                    <i data-lucide="star" style="width: 16px; color: #F59E0B; fill: #F59E0B;"></i>
+                                    <i data-lucide="star" style="width: 16px; color: #F59E0B; fill: #F59E0B;"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 2 -->
+                        <div class="testimonial-slide">
+                            <div class="card" style="padding: 3rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                                    <div
+                                        style="width: 50px; height: 50px; background: #10B981; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 1.25rem;">
+                                        F.E
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--secondary);">F. Energie</div>
+                                        <div style="font-size: 0.9rem; color: var(--text-light);">CVC & Climatisation
+                                        </div>
+                                    </div>
+                                </div>
+                                <p
+                                    style="font-style: italic; color: var(--text-main); margin-bottom: 1rem; font-size: 1.125rem;">
+                                    "Nous partions de zéro avec une réputation négative. Aujourd'hui, nous avons une
+                                    note de
+                                    4.5/5 et notre coût d'acquisition client a été divisé par deux."
+                                </p>
+                                <div style="display: flex; gap: 0.25rem;">
+                                    <i data-lucide="star" style="width: 16px; color: #F59E0B; fill: #F59E0B;"></i>
+                                    <i data-lucide="star" style="width: 16px; color: #F59E0B; fill: #F59E0B;"></i>
+                                    <i data-lucide="star" style="width: 16px; color: #F59E0B; fill: #F59E0B;"></i>
+                                    <i data-lucide="star" style="width: 16px; color: #F59E0B; fill: #F59E0B;"></i>
+                                    <i data-lucide="star" style="width: 16px; color: #F59E0B; fill: #F59E0B;"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 3 -->
+                        <div class="testimonial-slide">
+                            <div class="card" style="padding: 3rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                                    <div
+                                        style="width: 50px; height: 50px; background: #8B5CF6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 1.25rem;">
+                                        S.D
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--secondary);">S. Dupont</div>
+                                        <div style="font-size: 0.9rem; color: var(--text-light);">Cabinet Médical</div>
+                                    </div>
+                                </div>
+                                <p
+                                    style="font-style: italic; color: var(--text-main); margin-bottom: 1rem; font-size: 1.125rem;">
+                                    "Une approche professionnelle et des résultats concrets. Notre visibilité locale a
+                                    triplé en 3 mois."
+                                </p>
+                                <div style="display: flex; gap: 0.25rem;">
+                                    <i data-lucide="star" style="width: 16px; color: #F59E0B; fill: #F59E0B;"></i>
+                                    <i data-lucide="star" style="width: 16px; color: #F59E0B; fill: #F59E0B;"></i>
+                                    <i data-lucide="star" style="width: 16px; color: #F59E0B; fill: #F59E0B;"></i>
+                                    <i data-lucide="star" style="width: 16px; color: #F59E0B; fill: #F59E0B;"></i>
+                                    <i data-lucide="star" style="width: 16px; color: #F59E0B; fill: #F59E0B;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slider Dots -->
+                    <div style="display: flex; justify-content: center; gap: 0.75rem; margin-top: 2rem;">
+                        <button class="slider-dot active" data-slide="0"
+                            style="width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--primary); background: var(--primary); cursor: pointer; transition: all 0.3s;"></button>
+                        <button class="slider-dot" data-slide="1"
+                            style="width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--primary); background: transparent; cursor: pointer; transition: all 0.3s;"></button>
+                        <button class="slider-dot" data-slide="2"
+                            style="width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--primary); background: transparent; cursor: pointer; transition: all 0.3s;"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section
+            style="padding: 6rem 0; background: var(--secondary); color: #fff; text-align: center; position: relative; overflow: hidden;">
+            <div
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('mesh-bg.png'); opacity: 0.1; background-size: cover;">
+            </div>
+            <div class="container" style="position: relative; z-index: 1;">
+                <h2 style="color: #fff; font-size: 2.5rem; margin-bottom: 1.5rem;">Prêt à Rejoindre l'Excellence ?</h2>
+                <p
+                    style="color: rgba(255,255,255,0.8); margin-bottom: 3rem; font-size: 1.125rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Découvrez comment RaiseMed.IA peut transformer votre entreprise en leader de marché.
+                </p>
+                <a href="contact.html" class="btn btn-primary" style="padding: 1.25rem 2.5rem; font-size: 1.125rem;">
+                    Obtenir mon Audit Gratuit
+                </a>
+            </div>
+        </section>
+
+        <footer
+            style="background: #0F172A; color: #94A3B8; padding: 4rem 0; border-top: 1px solid rgba(255,255,255,0.1);">
+            <div class="container">
+                <div class="grid-12" style="margin-bottom: 3rem;">
+                    <div style="grid-column: span 4;">
+                        <a href="index.html" style="display: block; margin-bottom: 1.5rem;">
+                            <img src="Logo RAISE NEW.png" alt="RaiseMed.IA" height="32"
+                                style="filter: brightness(0) invert(1);">
+                        </a>
+                        <p style="font-size: 0.9rem; line-height: 1.6;">
+                            Cabinet d'Intelligence Digitale & Locale.<br>
+                            Nous transformons les entreprises locales en leaders de marché grâce à l'IA.
+                        </p>
+                    </div>
+                    <div style="grid-column: span 2;">
+                        <h4 style="color: #fff; margin-bottom: 1.5rem;">Navigation</h4>
+                        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+                            <li><a href="index.html#approach"
+                                    style="color: inherit; text-decoration: none; transition: color 0.3s;">Notre
+                                    Approche</a></li>
+                            <li><a href="services.html"
+                                    style="color: inherit; text-decoration: none; transition: color 0.3s;">Solutions</a>
+                            </li>
+                            <li><a href="agency.html"
+                                    style="color: inherit; text-decoration: none; transition: color 0.3s;">Le
+                                    Cabinet</a></li>
+                        </ul>
+                    </div>
+                    <div style="grid-column: span 2;">
+                        <h4 style="color: #fff; margin-bottom: 1.5rem;">Légal</h4>
+                        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+                            <li><a href="#"
+                                    style="color: inherit; text-decoration: none; transition: color 0.3s;">Mentions
+                                    Légales</a></li>
+                            <li><a href="#"
+                                    style="color: inherit; text-decoration: none; transition: color 0.3s;">Confidentialité</a>
+                            </li>
+                            <li><a href="#"
+                                    style="color: inherit; text-decoration: none; transition: color 0.3s;">CGV</a></li>
+                        </ul>
+                    </div>
+                    <div style="grid-column: span 4;">
+                        <h4 style="color: #fff; margin-bottom: 1.5rem;">Contact</h4>
+                        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+                            <li>hello@raisemed.ia</li>
+                            <li>Paris, France</li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem;">
+                    &copy; 2024 RaiseMed.IA. Tous droits réservés.
+                </div>
+            </div>
+        </footer>
+
+        <!-- Floating WhatsApp Button -->
+        <a href="https://wa.me/33756880404" class="whatsapp-float" target="_blank"
+            style="position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: white; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 1000;">
+            <i data-lucide="message-circle" style="width: 32px; height: 32px;"></i>
+        </a>
+
+        <script src="script.js"></script>
+        <script>
+            lucide.createIcons();
+
+            // Dynamic Glass Header
+            const header = document.querySelector('.header');
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                if (currentScroll > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Testimonials Slider
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            let autoSlideInterval;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    if (i === index) {
+                        slide.classList.add('active');
+                    }
+                });
+
+                dots.forEach((dot, i) => {
+                    if (i === index) {
+                        dot.style.background = 'var(--primary)';
+                        dot.classList.add('active');
+                    } else {
+                        dot.style.background = 'transparent';
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            // Auto-slide every 5 seconds
+            function startAutoSlide() {
+                autoSlideInterval = setInterval(nextSlide, 5000);
+            }
+
+            function stopAutoSlide() {
+                clearInterval(autoSlideInterval);
+            }
+
+            // Dot click handlers
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    stopAutoSlide();
+                    currentSlide = index;
+                    showSlide(currentSlide);
+                    startAutoSlide();
+                });
+            });
+
+            // Start auto-slide
+            startAutoSlide();
+        </script>
+</body>
+
+</html>

@@ -4,16 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | RaiseMed.IA</title>
+    <title>Audit Gratuit | RaiseMed.IA</title>
     <link rel="icon" href="icon RAISE NEW copie.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
         rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 
 <body>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/33782492124?text=Bonjour%2C%20je%20souhaite%20obtenir%20un%20audit%20gratuit%20pour%20mon%20entreprise.%20Pouvez-vous%20m'aider%20%3F"
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactez-nous sur WhatsApp">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-4.713 1.262 1.262-4.669-0.292-0.508c-1.207-2.100-1.847-4.507-1.847-6.923 0-7.435 6.065-13.5 13.5-13.5s13.5 6.065 13.5 13.5-6.065 13.5-13.5 13.5zM21.558 18.092c-0.247-0.123-1.456-0.719-1.681-0.801s-0.39-0.123-0.554 0.123c-0.164 0.247-0.637 0.801-0.781 0.966s-0.288 0.185-0.534 0.062c-0.247-0.123-1.041-0.384-1.983-1.224-0.733-0.653-1.228-1.461-1.372-1.708s-0.015-0.38 0.108-0.503c0.111-0.11 0.247-0.288 0.370-0.432s0.164-0.247 0.247-0.411c0.082-0.164 0.041-0.308-0.021-0.432s-0.554-1.335-0.759-1.828c-0.2-0.48-0.403-0.415-0.554-0.423-0.143-0.007-0.308-0.009-0.472-0.009s-0.431 0.062-0.657 0.308c-0.226 0.247-0.863 0.843-0.863 2.056s0.884 2.385 1.007 2.549c0.123 0.164 1.726 2.634 4.181 3.693 0.584 0.251 1.040 0.401 1.395 0.513 0.587 0.186 1.121 0.16 1.543 0.097 0.471-0.070 1.456-0.595 1.661-1.171s0.205-1.069 0.144-1.171c-0.062-0.103-0.226-0.164-0.473-0.288z" />
+        </svg>
+    </a>
+
     <div class="mesh-background"></div>
     <div class="grid-overlay"></div>
 
@@ -24,9 +34,10 @@
                     <img src="Logo RAISE NEW.png" alt="RaiseMed.IA" height="32">
                 </a>
                 <nav class="nav">
+                    <a href="index.html">Accueil</a>
+                    <a href="agency.html">Le Cabinet</a>
                     <a href="services.html">Solutions</a>
                     <a href="index.html#results">Résultats</a>
-                    <a href="about.html">Le Cabinet</a>
                 </nav>
                 <a href="contact.html" class="btn btn-primary">Audit Stratégique</a>
             </div>
@@ -34,58 +45,159 @@
     </header>
 
     <main>
-        <section class="hero" style="min-height: 60vh; padding-top: 12rem;">
+        <section class="hero" style="min-height: 100vh; padding-top: 10rem; padding-bottom: 4rem;">
             <div class="container">
-                <div class="grid-12">
-                    <div class="hero-text" style="grid-column: span 6;">
-                        <div
-                            style="display: inline-block; padding: 0.5rem 1rem; background: rgba(0,94,184,0.1); color: var(--primary); border-radius: 100px; font-weight: 600; font-size: 0.9rem; margin-bottom: 1.5rem;">
-                            Contact
-                        </div>
-                        <h1>
-                            Parlons de votre <span class="text-gradient">Croissance</span>.
-                        </h1>
-                        <p>
-                            Remplissez le formulaire ci-contre pour réserver votre audit stratégique gratuit. Nous
-                            analysons votre présence actuelle et vous proposons un plan d'action concret.
-                        </p>
-                        <div style="margin-top: 2rem;">
-                            <div style="display: flex; gap: 1rem; margin-bottom: 1rem; align-items: center;">
-                                <i data-lucide="mail" style="color: var(--primary);"></i>
-                                <a href="mailto:contact@raisemed.ia"
-                                    style="color: var(--text-main); text-decoration: none; font-weight: 500;">contact@raisemed.ia</a>
+                <div style="text-align: center; max-width: 700px; margin: 0 auto 4rem auto;">
+                    <div
+                        style="display: inline-block; padding: 0.5rem 1rem; background: rgba(0,94,184,0.1); color: var(--primary); border-radius: 100px; font-weight: 600; font-size: 0.9rem; margin-bottom: 1.5rem;">
+                        Audit Gratuit
+                    </div>
+                    <h1 style="margin-bottom: 1.5rem;">
+                        Obtenez Votre <span class="text-gradient">Audit Stratégique</span> Gratuit
+                    </h1>
+                    <p style="font-size: 1.125rem;">
+                        Découvrez en 48h comment dominer votre marché local. Analyse complète de votre présence digitale
+                        et plan d'action personnalisé.
+                    </p>
+                </div>
+
+                <!-- Multi-Step Form -->
+                <div style="max-width: 700px; margin: 0 auto;">
+                    <!-- Progress Bar -->
+                    <div style="margin-bottom: 3rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                            <div class="progress-step active" data-step="1">
+                                <div class="progress-step-number">1</div>
+                                <div class="progress-step-label">Informations</div>
                             </div>
-                            <div style="display: flex; gap: 1rem; margin-bottom: 1rem; align-items: center;">
-                                <i data-lucide="map-pin" style="color: var(--primary);"></i>
-                                <span>Paris, France</span>
+                            <div class="progress-step" data-step="2">
+                                <div class="progress-step-number">2</div>
+                                <div class="progress-step-label">Entreprise</div>
+                            </div>
+                        </div>
+                        <div
+                            style="height: 4px; background: rgba(0, 94, 184, 0.1); border-radius: 2px; overflow: hidden;">
+                            <div id="progressBar"
+                                style="height: 100%; width: 50%; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width 0.4s ease;">
                             </div>
                         </div>
                     </div>
-                    <div class="hero-visual" style="grid-column: span 6;">
-                        <div class="card" style="padding: 2rem;">
-                            <form style="display: flex; flex-direction: column; gap: 1.5rem;">
-                                <div>
-                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Nom
-                                        Complet</label>
-                                    <input type="text" placeholder="Jean Dupont"
-                                        style="width: 100%; padding: 1rem; border: 1px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body);">
+
+                    <!-- Form Card -->
+                    <div class="card" style="padding: 3rem;">
+                        <form id="auditForm">
+                            <!-- Step 1: Personal Info -->
+                            <div class="form-step active" data-step="1">
+                                <h3 style="margin-bottom: 2rem;">Vos Coordonnées</h3>
+                                <div
+                                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                                    <div>
+                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Prénom
+                                            <span style="color: #EF4444;">*</span></label>
+                                        <input type="text" name="prenom" required
+                                            style="width: 100%; padding: 1rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s;"
+                                            placeholder="Jean">
+                                    </div>
+                                    <div>
+                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Nom
+                                            <span style="color: #EF4444;">*</span></label>
+                                        <input type="text" name="nom" required
+                                            style="width: 100%; padding: 1rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s;"
+                                            placeholder="Dupont">
+                                    </div>
                                 </div>
-                                <div>
-                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email
-                                        Professionnel</label>
-                                    <input type="email" placeholder="jean@entreprise.com"
-                                        style="width: 100%; padding: 1rem; border: 1px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body);">
+                                <div style="margin-bottom: 1.5rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Téléphone
+                                        <span style="color: #EF4444;">*</span></label>
+                                    <input type="tel" name="telephone" required
+                                        style="width: 100%; padding: 1rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s;"
+                                        placeholder="+33 6 12 34 56 78">
                                 </div>
-                                <div>
-                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Site Web
-                                        (Optionnel)</label>
-                                    <input type="url" placeholder="https://www.votre-site.com"
-                                        style="width: 100%; padding: 1rem; border: 1px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body);">
+                                <div style="margin-bottom: 2rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email <span
+                                            style="color: var(--text-light); font-size: 0.9rem;">(Optionnel)</span></label>
+                                    <input type="email" name="email"
+                                        style="width: 100%; padding: 1rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s;"
+                                        placeholder="jean.dupont@entreprise.com">
                                 </div>
-                                <button type="submit" class="btn btn-primary"
-                                    style="width: 100%; justify-content: center;">Demander mon Audit</button>
-                            </form>
-                        </div>
+                                <button type="button" class="btn btn-primary" onclick="nextStep()"
+                                    style="width: 100%; justify-content: center;">
+                                    Continuer
+                                    <i data-lucide="arrow-right" style="width: 20px;"></i>
+                                </button>
+                            </div>
+
+                            <!-- Step 2: Business Info -->
+                            <div class="form-step" data-step="2">
+                                <h3 style="margin-bottom: 2rem;">Votre Établissement Google</h3>
+
+                                <!-- Tutorial Card -->
+                                <div class="card"
+                                    style="background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%); border: 2px solid var(--primary); padding: 1.5rem; margin-bottom: 2rem;">
+                                    <div style="display: flex; gap: 1rem; align-items: start;">
+                                        <i data-lucide="info"
+                                            style="width: 24px; height: 24px; color: var(--primary); flex-shrink: 0;"></i>
+                                        <div>
+                                            <h4
+                                                style="color: var(--primary); margin-bottom: 0.75rem; font-size: 1.1rem;">
+                                                Comment trouver l'URL de votre fiche Google ?</h4>
+                                            <ol style="margin: 0; padding-left: 1.25rem; color: var(--text-main);">
+                                                <li style="margin-bottom: 0.5rem;">Recherchez votre entreprise sur
+                                                    <strong>Google Maps</strong></li>
+                                                <li style="margin-bottom: 0.5rem;">Cliquez sur votre établissement</li>
+                                                <li style="margin-bottom: 0.5rem;">Cliquez sur
+                                                    <strong>"Partager"</strong></li>
+                                                <li>Copiez le lien et collez-le ci-dessous</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="margin-bottom: 2rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">URL Fiche
+                                        Google Business <span style="color: #EF4444;">*</span></label>
+                                    <input type="url" name="googleUrl" required
+                                        style="width: 100%; padding: 1rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s;"
+                                        placeholder="https://maps.app.goo.gl/...">
+                                    <div style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.5rem;">
+                                        <i data-lucide="check-circle" style="width: 14px; color: #10B981;"></i>
+                                        Exemple : https://maps.app.goo.gl/ABC123
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; gap: 1rem;">
+                                    <button type="button" class="btn btn-ghost" onclick="prevStep()"
+                                        style="flex: 1; justify-content: center;">
+                                        <i data-lucide="arrow-left" style="width: 20px;"></i>
+                                        Retour
+                                    </button>
+                                    <button type="submit" class="btn btn-primary"
+                                        style="flex: 2; justify-content: center;">
+                                        <i data-lucide="send" style="width: 20px;"></i>
+                                        Envoyer ma demande
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Thank You Message (Hidden initially) -->
+                            <div id="thankYouMessage" style="display: none; text-align: center; padding: 3rem 0;">
+                                <div
+                                    style="width: 100px; height: 100px; background: linear-gradient(135deg, #10B981 0%, #059669 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem auto; box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3);">
+                                    <i data-lucide="check" style="width: 50px; height: 50px; color: white;"></i>
+                                </div>
+                                <h2 id="thankYouTitle" style="margin-bottom: 1rem; color: var(--secondary);">Merci !
+                                </h2>
+                                <p
+                                    style="font-size: 1.125rem; color: var(--text-light); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+                                    Votre demande d'audit a été envoyée avec succès. Nous vous contacterons sous
+                                    <strong>48 heures</strong> pour discuter de votre stratégie de croissance.
+                                </p>
+                                <a href="index.html" class="btn btn-primary">
+                                    <i data-lucide="home" style="width: 20px;"></i>
+                                    Retour à l'accueil
+                                </a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -110,7 +222,7 @@
                 </div>
                 <div class="footer-col">
                     <h4>Agence</h4>
-                    <a href="about.html">À propos</a>
+                    <a href="agency.html">À propos</a>
                     <a href="contact.html">Carrières</a>
                     <a href="contact.html">Contact</a>
                 </div>
@@ -130,7 +242,161 @@
 
     <script>
         lucide.createIcons();
+
+        // Dynamic Glass Header
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        let currentStep = 1;
+        const totalSteps = 2;
+
+        function updateProgress() {
+            const progressBar = document.getElementById('progressBar');
+            const progressSteps = document.querySelectorAll('.progress-step');
+            const formSteps = document.querySelectorAll('.form-step');
+
+            // Update progress bar
+            const progress = (currentStep / totalSteps) * 100;
+            progressBar.style.width = progress + '%';
+
+            // Update step indicators
+            progressSteps.forEach((step, index) => {
+                if (index < currentStep) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+
+            // Update form steps
+            formSteps.forEach((step, index) => {
+                if (index === currentStep - 1) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+
+            // Reinitialize icons
+            lucide.createIcons();
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateProgress();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateProgress();
+            }
+        }
+
+        document.getElementById('auditForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const prenom = formData.get('prenom');
+
+            // Hide form
+            document.querySelector('.form-step.active').style.display = 'none';
+
+            // Show thank you message with personalized name
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            const thankYouTitle = document.getElementById('thankYouTitle');
+            thankYouTitle.textContent = `Merci ${prenom} !`;
+            thankYouMessage.style.display = 'block';
+
+            // Reinitialize icons
+            lucide.createIcons();
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Add focus styles to inputs
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', function () {
+                this.style.borderColor = 'var(--primary)';
+                this.style.boxShadow = '0 0 0 3px rgba(0, 94, 184, 0.1)';
+            });
+            input.addEventListener('blur', function () {
+                this.style.borderColor = '#E2E8F0';
+                this.style.boxShadow = 'none';
+            });
+        });
     </script>
+
+    <style>
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.4;
+            transition: opacity 0.3s;
+        }
+
+        .progress-step.active {
+            opacity: 1;
+        }
+
+        .progress-step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 94, 184, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .progress-step.active .progress-step-number {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 94, 184, 0.3);
+        }
+
+        .progress-step-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </body>
 
 </html>

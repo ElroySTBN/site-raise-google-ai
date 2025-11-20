@@ -1,6 +1,6 @@
 /* Timeline Section */
 .timeline-section {
-    padding: 10rem 0;
+    padding: 6rem 0;
     position: relative;
     overflow: hidden;
 }
@@ -23,29 +23,35 @@
     z-index: 0;
 }
 
-/* Animated line fill */
-.timeline-line::after {
-    content: '';
+/* Animated progress bar */
+.timeline-progress {
     position: absolute;
+    left: 50%;
     top: 0;
-    left: 0;
-    width: 100%;
+    width: 6px;
     height: 0%;
-    background: var(--primary);
-    transition: height 0.5s ease;
+    background: linear-gradient(180deg, var(--primary) 0%, var(--accent) 100%);
+    transform: translateX(-50%);
+    z-index: 1;
+    box-shadow: 0 0 20px var(--primary), 0 0 40px var(--primary)80;
+    transition: height 0.3s ease-out;
+    border-radius: 3px;
 }
 
 .timeline-item {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
     position: relative;
     z-index: 1;
-    opacity: 0;
-    /* For animation */
-    transform: translateY(50px);
-    /* For animation */
+    opacity: 1;
+    /* Visible by default */
+    visibility: visible;
+    /* Ensure visibility */
+    transform: translateY(0);
+    /* No initial offset */
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .timeline-item:nth-child(odd) {
@@ -60,19 +66,40 @@
     width: 60px;
     height: 60px;
     background: var(--bg-body);
-    border: 4px solid var(--primary);
+    /* Transparent initially, fills when activated */
+    border: 4px solid rgba(0, 94, 184, 0.3);
+    /* Subtle border initially */
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    color: var(--primary);
+    color: rgba(0, 94, 184, 0.5);
+    /* Dimmed initially */
     font-size: 1.2rem;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
     box-shadow: 0 0 0 8px var(--bg-body);
+    transition: all 0.4s ease;
+}
+
+/* Neon glow effect on active */
+.timeline-item.active .timeline-marker {
+    animation: neonPulse 2s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 8px var(--bg-body), 0 0 20px currentColor, 0 0 40px currentColor;
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px var(--bg-body), 0 0 30px currentColor, 0 0 60px currentColor;
+    }
 }
 
 .timeline-content {
