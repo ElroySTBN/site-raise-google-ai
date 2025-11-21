@@ -36,18 +36,52 @@
         <div class="container">
             <div class="header-inner">
                 <a href="index.html" class="logo">
-                    <img src="Logo RAISE NEW.png" alt="RaiseMed.IA" height="32">
+                    <img src="Logo RAISE NEW.png" alt="RaiseMed.IA" height="38">
                 </a>
+
+                <!-- Desktop Nav -->
                 <nav class="nav">
                     <a href="index.html">Accueil</a>
                     <a href="agency.html">Le Cabinet</a>
                     <a href="services.html">Solutions</a>
                     <a href="index.html#results">Résultats</a>
                 </nav>
-                <a href="contact.html" class="btn btn-primary">Audit Stratégique</a>
+
+                <div class="header-actions">
+                    <a href="contact.html" class="btn btn-primary hidden-mobile">Audit Stratégique</a>
+
+                    <!-- Burger Menu Button -->
+                    <button class="burger-menu" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay">
+        <div class="mobile-nav-header">
+            <a href="index.html" class="logo">
+                <img src="Logo RAISE NEW.png" alt="RaiseMed.IA" height="28">
+            </a>
+            <button class="close-menu-btn" aria-label="Fermer le menu">
+                <i data-lucide="x" style="width: 24px; height: 24px; color: var(--text-main);"></i>
+            </button>
+        </div>
+        <div class="mobile-nav-content">
+            <nav class="mobile-nav-links">
+                <a href="index.html" class="mobile-link">Accueil</a>
+                <a href="agency.html" class="mobile-link">Le Cabinet</a>
+                <a href="services.html" class="mobile-link">Solutions</a>
+                <a href="index.html#results" class="mobile-link">Résultats</a>
+                <a href="contact.html" class="btn btn-primary mobile-cta">Audit Stratégique</a>
+            </nav>
+        </div>
+    </div>
+
 
     <main>
         <!-- Hero Section -->
@@ -61,7 +95,8 @@
                         </div>
                         <h1>
                             Ne cherchez plus vos clients. <br>
-                            L'<span class="text-gradient">IA</span> les amène à votre porte.
+                            L'<span class="text-gradient">IA</span> les amène à <span class="animated-underline">votre
+                                porte</span>.
                         </h1>
                         <p>
                             Dominez votre marché local grâce à notre système propriétaire qui combine IA et expertise
@@ -443,7 +478,7 @@
                     <div class="card"
                         style="background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%); border: 2px solid #F59E0B; padding: 2rem; position: relative;">
                         <div
-                            style="position: absolute; top: -12px; left: 2rem; background: #F59E0B; color: #fff; padding: 0.25rem 1rem; border-radius: 100px; font-weight: 600; font-size: 0.85rem;">
+                            style="position: absolute; top: -15px; left: 2rem; background: #F59E0B; color: #fff; padding: 0.35rem 1rem; border-radius: 100px; font-weight: 600; font-size: 0.85rem; z-index: 10;">
                             ⚠️ ALERTE LÉGISLATIVE
                         </div>
                         <div style="display: flex; gap: 1.5rem; align-items: start; margin-top: 0.5rem;">
@@ -464,6 +499,14 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Strategic CTA 1 -->
+                <div style="text-align: center; margin-top: 4rem;">
+                    <a href="contact.html" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">
+                        Obtenir mon Audit Gratuit <i data-lucide="arrow-right"
+                            style="margin-left: 0.5rem; width: 20px;"></i>
+                    </a>
                 </div>
             </div>
         </section>
@@ -554,8 +597,16 @@
                         </ul>
                     </div>
                 </div>
+
+                <!-- Strategic CTA 2 -->
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="contact.html" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">
+                        Passer à l'Inbound Marketing <i data-lucide="zap" style="margin-left: 0.5rem; width: 20px;"></i>
+                    </a>
+                </div>
             </div>
         </section>
+
 
         <!-- Guarantee Section (Risk Reversal) -->
         <!-- Performance Guarantee Section -->
@@ -641,27 +692,25 @@
             <div class="container">
                 <div class="grid-12" style="margin-bottom: 3rem;">
                     <div style="grid-column: span 4;">
-                        <a href="index.html" style="display: block; margin-bottom: 1.5rem;">
-                            <img src="Logo RAISE NEW.png" alt="RaiseMed.IA" height="32"
-                                style="filter: brightness(0) invert(1);">
+                        <a href="index.html" class="footer-logo-container">
+                            <img src="Logo RAISE NEW.png" alt="RaiseMed.IA" height="32" style="display: block;">
                         </a>
-                        <p style="font-size: 0.9rem; line-height: 1.6;">
-                            Cabinet d'Intelligence Digitale & Locale.<br>
-                            Nous transformons les entreprises locales en leaders de marché grâce à l'IA.
+                        <p style="font-size: 0.9rem; line-height: 1.6; margin-top: 1rem;">
+                            Rendez votre savoir-faire accessible à ceux qui en ont le plus besoin.
                         </p>
                     </div>
                     <div style="grid-column: span 2;">
                         <h4 style="color: #fff; margin-bottom: 1.5rem;">Navigation</h4>
                         <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem;">
-                            <li><a href="#approach"
-                                    style="color: inherit; text-decoration: none; transition: color 0.3s;">Notre
-                                    Approche</a></li>
-                            <li><a href="contact.html"
-                                    style="color: inherit; text-decoration: none; transition: color 0.3s;">Études de
-                                    Cas</a></li>
-                            <li><a href="#system"
+                            <li><a href="index.html"
+                                    style="color: inherit; text-decoration: none; transition: color 0.3s;">Accueil</a>
+                            </li>
+                            <li><a href="agency.html"
                                     style="color: inherit; text-decoration: none; transition: color 0.3s;">Le
-                                    Système</a></li>
+                                    Cabinet</a></li>
+                            <li><a href="services.html"
+                                    style="color: inherit; text-decoration: none; transition: color 0.3s;">Solutions</a>
+                            </li>
                         </ul>
                     </div>
                     <div style="grid-column: span 2;">
@@ -680,7 +729,8 @@
                     <div style="grid-column: span 4;">
                         <h4 style="color: #fff; margin-bottom: 1.5rem;">Contact</h4>
                         <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.75rem;">
-                            <li>hello@raisemed.ia</li>
+                            <li><a href="mailto:hello@raisemed.ia"
+                                    style="color: inherit; text-decoration: none;">hello@raisemed.ia</a></li>
                             <li>Paris, France</li>
                         </ul>
                     </div>

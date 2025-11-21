@@ -445,17 +445,61 @@ if (!PERFORMANCE_MODE) {
 // ============================================
 // DYNAMIC GLASS HEADER
 // ============================================
+// Burger Menu Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const burgerMenu = document.querySelector('.burger-menu');
+    const closeMenuBtn = document.querySelector('.close-menu-btn');
+    const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function toggleMenu() {
+        const isActive = mobileNavOverlay.classList.contains('active');
+
+        if (!isActive) {
+            // Open Menu
+            mobileNavOverlay.classList.add('active');
+            burgerMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        } else {
+            // Close Menu
+            mobileNavOverlay.classList.remove('active');
+            burgerMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    if (burgerMenu && mobileNavOverlay) {
+        burgerMenu.addEventListener('click', toggleMenu);
+
+        if (closeMenuBtn) {
+            closeMenuBtn.addEventListener('click', toggleMenu);
+        }
+
+        // Close menu when clicking a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNavOverlay.classList.remove('active');
+                burgerMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
+    // Re-initialize icons for the new close button
+    if (window.lucide) {
+        lucide.createIcons();
+    }
+});
+
+// Initialize Lucide icons
+lucide.createIcons();
+
+// Header Scroll Effect
 const header = document.querySelector('.header');
-let lastScroll = 0;
-
 window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll > 50) {
+    if (window.scrollY > 50) {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
     }
-
-    lastScroll = currentScroll;
 });

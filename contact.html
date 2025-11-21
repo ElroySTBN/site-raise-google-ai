@@ -12,6 +12,7 @@
         rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
@@ -33,39 +34,72 @@
                 <a href="index.html" class="logo">
                     <img src="Logo RAISE NEW.png" alt="RaiseMed.IA" height="32">
                 </a>
+
+                <!-- Desktop Nav -->
                 <nav class="nav">
                     <a href="index.html">Accueil</a>
                     <a href="agency.html">Le Cabinet</a>
                     <a href="services.html">Solutions</a>
                     <a href="index.html#results">Résultats</a>
                 </nav>
-                <a href="contact.html" class="btn btn-primary">Audit Stratégique</a>
+
+                <div class="header-actions">
+                    <a href="contact.html" class="btn btn-primary hidden-mobile">Audit Stratégique</a>
+
+                    <!-- Burger Menu Button -->
+                    <button class="burger-menu" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
 
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay">
+        <div class="mobile-nav-header">
+            <a href="index.html" class="logo">
+                <img src="Logo RAISE NEW.png" alt="RaiseMed.IA" height="28">
+            </a>
+            <button class="close-menu-btn" aria-label="Fermer le menu">
+                <i data-lucide="x" style="width: 24px; height: 24px; color: var(--text-main);"></i>
+            </button>
+        </div>
+        <div class="mobile-nav-content">
+            <nav class="mobile-nav-links">
+                <a href="index.html" class="mobile-link">Accueil</a>
+                <a href="agency.html" class="mobile-link">Le Cabinet</a>
+                <a href="services.html" class="mobile-link">Solutions</a>
+                <a href="index.html#results" class="mobile-link">Résultats</a>
+                <a href="contact.html" class="btn btn-primary mobile-cta">Audit Stratégique</a>
+            </nav>
+        </div>
+    </div>
+
+
     <main>
-        <section class="hero" style="min-height: 100vh; padding-top: 10rem; padding-bottom: 4rem;">
+        <section class="hero contact-hero" style="min-height: auto; padding-top: 6rem; padding-bottom: 2rem;">
             <div class="container">
-                <div style="text-align: center; max-width: 700px; margin: 0 auto 4rem auto;">
+                <div style="text-align: center; max-width: 600px; margin: 0 auto 1.5rem auto;">
                     <div
-                        style="display: inline-block; padding: 0.5rem 1rem; background: rgba(0,94,184,0.1); color: var(--primary); border-radius: 100px; font-weight: 600; font-size: 0.9rem; margin-bottom: 1.5rem;">
+                        style="display: inline-block; padding: 0.4rem 0.8rem; background: rgba(0,94,184,0.1); color: var(--primary); border-radius: 100px; font-weight: 600; font-size: 0.85rem; margin-bottom: 1rem;">
                         Audit Gratuit
                     </div>
-                    <h1 style="margin-bottom: 1.5rem;">
+                    <h1 style="margin-bottom: 0.75rem; font-size: 2.5rem; line-height: 1.2;">
                         Obtenez Votre <span class="text-gradient">Audit Stratégique</span> Gratuit
                     </h1>
-                    <p style="font-size: 1.125rem;">
-                        Découvrez en 48h comment dominer votre marché local. Analyse complète de votre présence digitale
-                        et plan d'action personnalisé.
+                    <p style="font-size: 1rem; line-height: 1.5;">
+                        Découvrez en 48h comment dominer votre marché local.
                     </p>
                 </div>
 
                 <!-- Multi-Step Form -->
                 <div style="max-width: 700px; margin: 0 auto;">
                     <!-- Progress Bar -->
-                    <div style="margin-bottom: 3rem;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <div style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
                             <div class="progress-step active" data-step="1">
                                 <div class="progress-step-number">1</div>
                                 <div class="progress-step-label">Informations</div>
@@ -76,7 +110,7 @@
                             </div>
                         </div>
                         <div
-                            style="height: 4px; background: rgba(0, 94, 184, 0.1); border-radius: 2px; overflow: hidden;">
+                            style="height: 3px; background: rgba(0, 94, 184, 0.1); border-radius: 2px; overflow: hidden;">
                             <div id="progressBar"
                                 style="height: 100%; width: 50%; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width 0.4s ease;">
                             </div>
@@ -84,40 +118,55 @@
                     </div>
 
                     <!-- Form Card -->
-                    <div class="card" style="padding: 3rem;">
-                        <form id="auditForm">
+                    <div class="card contact-form-card" style="padding: 2rem;">
+                        <form id="auditForm" action="https://api.web3forms.com/submit" method="POST">
+                            <!-- Web3Forms Access Key -->
+                            <input type="hidden" name="access_key" value="2d5b666c-332d-4b13-aa40-ce437c4ee692">
+
+                            <!-- Email Configuration -->
+                            <input type="hidden" name="redirect" value="https://web3forms.com/success">
+
+                            <!-- Custom Configuration -->
+                            <input type="hidden" name="subject" value="Nouvelle demande d'audit gratuit - RaiseMed.IA">
+                            <input type="hidden" name="from_name" value="RaiseMed.IA - Formulaire Contact">
+
                             <!-- Step 1: Personal Info -->
                             <div class="form-step active" data-step="1">
-                                <h3 style="margin-bottom: 2rem;">Vos Coordonnées</h3>
-                                <div
-                                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                                <h3 style="margin-bottom: 1.25rem; font-size: 1.5rem;">Vos Coordonnées</h3>
+                                <div class="form-grid-2"
+                                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
                                     <div>
-                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Prénom
+                                        <label
+                                            style="display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: 0.95rem;">Prénom
                                             <span style="color: #EF4444;">*</span></label>
                                         <input type="text" name="prenom" required
-                                            style="width: 100%; padding: 1rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s;"
+                                            style="width: 100%; padding: 0.85rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s; font-size: 0.95rem;"
                                             placeholder="Jean">
                                     </div>
                                     <div>
-                                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Nom
+                                        <label
+                                            style="display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: 0.95rem;">Nom
                                             <span style="color: #EF4444;">*</span></label>
                                         <input type="text" name="nom" required
-                                            style="width: 100%; padding: 1rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s;"
+                                            style="width: 100%; padding: 0.85rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s; font-size: 0.95rem;"
                                             placeholder="Dupont">
                                     </div>
                                 </div>
-                                <div style="margin-bottom: 1.5rem;">
-                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Téléphone
+                                <div style="margin-bottom: 1rem;">
+                                    <label
+                                        style="display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: 0.95rem;">Téléphone
                                         <span style="color: #EF4444;">*</span></label>
                                     <input type="tel" name="telephone" required
-                                        style="width: 100%; padding: 1rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s;"
+                                        style="width: 100%; padding: 0.85rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s; font-size: 0.95rem;"
                                         placeholder="+33 6 12 34 56 78">
                                 </div>
-                                <div style="margin-bottom: 2rem;">
-                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email <span
-                                            style="color: var(--text-light); font-size: 0.9rem;">(Optionnel)</span></label>
+                                <div style="margin-bottom: 1.25rem;">
+                                    <label
+                                        style="display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: 0.95rem;">Email
+                                        <span
+                                            style="color: var(--text-light); font-size: 0.85rem;">(Optionnel)</span></label>
                                     <input type="email" name="email"
-                                        style="width: 100%; padding: 1rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s;"
+                                        style="width: 100%; padding: 0.85rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s; font-size: 0.95rem;"
                                         placeholder="jean.dupont@entreprise.com">
                                 </div>
                                 <button type="button" class="btn btn-primary" onclick="nextStep()"
@@ -143,10 +192,12 @@
                                                 Comment trouver l'URL de votre fiche Google ?</h4>
                                             <ol style="margin: 0; padding-left: 1.25rem; color: var(--text-main);">
                                                 <li style="margin-bottom: 0.5rem;">Recherchez votre entreprise sur
-                                                    <strong>Google Maps</strong></li>
+                                                    <strong>Google Maps</strong>
+                                                </li>
                                                 <li style="margin-bottom: 0.5rem;">Cliquez sur votre établissement</li>
                                                 <li style="margin-bottom: 0.5rem;">Cliquez sur
-                                                    <strong>"Partager"</strong></li>
+                                                    <strong>"Partager"</strong>
+                                                </li>
                                                 <li>Copiez le lien et collez-le ci-dessous</li>
                                             </ol>
                                         </div>
@@ -208,10 +259,12 @@
         <div class="container">
             <div class="grid-12">
                 <div class="footer-col">
-                    <img src="Logo RAISE NEW.png" alt="RaiseMed.IA"
-                        style="height: 32px; filter: brightness(0) invert(1); margin-bottom: 1.5rem;">
+                    <a href="index.html" class="footer-logo-container">
+                        <img src="Logo RAISE NEW.png" alt="RaiseMed.IA" height="32"
+                            style="display: block; margin-bottom: 1.5rem;">
+                    </a>
                     <p style="font-size: 0.9rem;">
-                        L'agence de croissance pour les leaders locaux ambitieux.
+                        Rendez votre savoir-faire accessible à ceux qui en ont le plus besoin.
                     </p>
                 </div>
                 <div class="footer-col">
@@ -302,26 +355,57 @@
             }
         }
 
-        document.getElementById('auditForm').addEventListener('submit', function (e) {
+        document.getElementById('auditForm').addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            const formData = new FormData(this);
+            const form = this;
+            const formData = new FormData(form);
             const prenom = formData.get('prenom');
+            const submitButton = form.querySelector('button[type="submit"]');
 
-            // Hide form
-            document.querySelector('.form-step.active').style.display = 'none';
-
-            // Show thank you message with personalized name
-            const thankYouMessage = document.getElementById('thankYouMessage');
-            const thankYouTitle = document.getElementById('thankYouTitle');
-            thankYouTitle.textContent = `Merci ${prenom} !`;
-            thankYouMessage.style.display = 'block';
-
-            // Reinitialize icons
+            // Disable submit button and show loading state
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i data-lucide="loader" style="width: 20px; animation: spin 1s linear infinite;"></i> Envoi en cours...';
             lucide.createIcons();
 
-            // Scroll to top smoothly
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            try {
+                // Send form data to Web3Forms
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Hide form
+                    document.querySelector('.form-step.active').style.display = 'none';
+
+                    // Show thank you message with personalized name
+                    const thankYouMessage = document.getElementById('thankYouMessage');
+                    const thankYouTitle = document.getElementById('thankYouTitle');
+                    thankYouTitle.textContent = `Merci ${prenom} !`;
+                    thankYouMessage.style.display = 'block';
+
+                    // Reinitialize icons
+                    lucide.createIcons();
+
+                    // Scroll to top smoothly
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    // Show error message
+                    alert('Une erreur est survenue lors de l\'envoi du formulaire. Veuillez réessayer.');
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = '<i data-lucide="send" style="width: 20px;"></i> Envoyer ma demande';
+                    lucide.createIcons();
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Une erreur est survenue. Veuillez vérifier votre connexion internet et réessayer.');
+                submitButton.disabled = false;
+                submitButton.innerHTML = '<i data-lucide="send" style="width: 20px;"></i> Envoyer ma demande';
+                lucide.createIcons();
+            }
         });
 
         // Add focus styles to inputs
@@ -396,7 +480,18 @@
                 transform: translateY(0);
             }
         }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
     </style>
+    <script src="script.js"></script>
 </body>
 
 </html>

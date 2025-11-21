@@ -11,6 +11,8 @@
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
         rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
@@ -32,16 +34,50 @@
                 <a href="index.html" class="logo">
                     <img src="Logo RAISE NEW.png" alt="RaiseMed.IA" height="32">
                 </a>
+
+                <!-- Desktop Nav -->
                 <nav class="nav">
                     <a href="index.html">Accueil</a>
                     <a href="agency.html">Le Cabinet</a>
                     <a href="services.html" class="active" style="color: var(--primary);">Solutions</a>
                     <a href="index.html#results">Résultats</a>
                 </nav>
-                <a href="contact.html" class="btn btn-primary">Audit Stratégique</a>
+
+                <div class="header-actions">
+                    <a href="contact.html" class="btn btn-primary hidden-mobile">Audit Stratégique</a>
+
+                    <!-- Burger Menu Button -->
+                    <button class="burger-menu" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay">
+        <div class="mobile-nav-header">
+            <a href="index.html" class="logo">
+                <img src="Logo RAISE NEW.png" alt="RaiseMed.IA" height="28">
+            </a>
+            <button class="close-menu-btn" aria-label="Fermer le menu">
+                <i data-lucide="x" style="width: 24px; height: 24px; color: var(--text-main);"></i>
+            </button>
+        </div>
+        <div class="mobile-nav-content">
+            <nav class="mobile-nav-links">
+                <a href="index.html" class="mobile-link">Accueil</a>
+                <a href="agency.html" class="mobile-link">Le Cabinet</a>
+                <a href="services.html" class="mobile-link active" style="color: var(--primary);">Solutions</a>
+                <a href="index.html#results" class="mobile-link">Résultats</a>
+                <a href="contact.html" class="btn btn-primary mobile-cta">Audit Stratégique</a>
+            </nav>
+        </div>
+    </div>
+
 
     <main>
         <section class="hero" style="min-height: 60vh; padding-top: 12rem; padding-bottom: 4rem;">
@@ -199,10 +235,12 @@
         <div class="container">
             <div class="grid-12">
                 <div class="footer-col">
-                    <img src="Logo RAISE NEW.png" alt="RaiseMed.IA"
-                        style="height: 32px; filter: brightness(0) invert(1); margin-bottom: 1.5rem;">
+                    <a href="index.html" class="footer-logo-container">
+                        <img src="Logo RAISE NEW.png" alt="RaiseMed.IA" height="32"
+                            style="display: block; margin-bottom: 1.5rem;">
+                    </a>
                     <p style="font-size: 0.9rem;">
-                        L'agence de croissance pour les leaders locaux ambitieux.
+                        Rendez votre savoir-faire accessible à ceux qui en ont le plus besoin.
                     </p>
                 </div>
                 <div class="footer-col">
@@ -231,19 +269,9 @@
         </div>
     </footer>
 
+    <script src="script.js"></script>
     <script>
         lucide.createIcons();
-
-        // Dynamic Glass Header
-        const header = document.querySelector('.header');
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            if (currentScroll > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
     </script>
 </body>
 

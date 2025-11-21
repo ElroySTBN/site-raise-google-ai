@@ -64,12 +64,18 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 body {
     font-family: var(--font-body);
     background-color: var(--bg-body);
     color: var(--text-main);
     line-height: 1.7;
     overflow-x: hidden;
+    width: 100%;
     position: relative;
 }
 
@@ -117,6 +123,18 @@ body::before {
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 2rem;
+    width: 100%;
+}
+
+section {
+    padding: var(--space-xl) 0;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+main {
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .grid-12 {
@@ -167,6 +185,45 @@ p {
     -webkit-text-fill-color: transparent;
 }
 
+/* Animated Underline Effect */
+.animated-underline {
+    position: relative;
+    display: inline-block;
+    font-weight: 700;
+    color: var(--secondary);
+}
+
+.animated-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+    border-radius: 4px;
+    opacity: 0.3;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: drawUnderline 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+@keyframes drawUnderline {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: scaleX(1);
+        opacity: 0.4;
+    }
+}
+
 /* Components */
 .btn {
     display: inline-flex;
@@ -183,24 +240,6 @@ p {
     cursor: pointer;
     border: none;
     font-family: var(--font-body);
-}
-
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-.btn:active::before {
-    width: 300px;
-    height: 300px;
 }
 
 .btn-primary {
@@ -1275,17 +1314,58 @@ p {
         font-size: 2rem;
     }
 
+    /* WhatsApp Button - Clean Implementation */
+    .whatsapp-float {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background-color: #25d366;
+        color: #fff;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+        transform: scale(1.1);
+        background-color: #128c7e;
+    }
+
+    .whatsapp-float svg {
+        width: 32px;
+        height: 32px;
+        fill: white;
+    }
+
+    /* Footer Logo Container */
+    .footer-logo-container {
+        background: white;
+        padding: 0.75rem 1rem;
+        border-radius: 12px;
+        display: inline-block;
+        margin-bottom: 1.5rem;
+    }
+
     /* WhatsApp Button - Small Mobile */
     .whatsapp-float {
         width: 50px;
         height: 50px;
-        bottom: 12px;
-        right: 12px;
+        bottom: 15px;
+        right: 15px;
     }
 
     .whatsapp-float svg {
-        width: 24px;
-        height: 24px;
+        width: 28px;
+        height: 28px;
     }
 
     /* Form - Small Mobile */
@@ -1297,5 +1377,436 @@ p {
     textarea {
         font-size: 16px !important;
         /* Prevents zoom on iOS */
+    }
+}
+
+/* ============================================
+   BURGER MENU & MOBILE NAV
+   ============================================ */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 0;
+}
+
+.burger-menu span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-main);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Mobile Nav Overlay */
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    /* Solid background for better readability */
+    z-index: 2000;
+    /* Higher z-index to cover everything */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+    /* Slide in from right */
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* Mobile Menu Header (Logo + Close Button) */
+.mobile-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.close-menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.03);
+    transition: background 0.2s;
+}
+
+.close-menu-btn:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.mobile-nav-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    width: 100%;
+}
+
+.mobile-link {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    /* Larger, more impactful font */
+    font-weight: 700;
+    color: var(--text-main);
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.mobile-link:hover {
+    color: var(--primary);
+    transform: translateX(5px);
+}
+
+.mobile-cta {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 1.25rem;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+}
+
+/* Burger Menu Animation */
+.burger-menu.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.burger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* ============================================
+   CRITICAL MOBILE FIXES - OVERFLOW PREVENTION
+   ============================================ */
+
+@media (max-width: 768px) {
+
+    /* Show Burger Menu */
+    .burger-menu {
+        display: flex;
+    }
+
+    .hidden-mobile {
+        display: none !important;
+    }
+
+    /* Prevent all horizontal overflow */
+    html,
+    body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        position: relative;
+    }
+
+    /* Force all containers to respect viewport */
+    .container {
+        width: 100% !important;
+        padding: 0 1.25rem !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Override inline max-width styles */
+    [style*="max-width"] {
+        max-width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Grid system complete override */
+    .grid-12 {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2rem !important;
+    }
+
+    .grid-12>* {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Force images to be responsive */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* Comparison grid mobile fix */
+    .comparison-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2rem !important;
+    }
+
+    /* Timeline mobile width fix */
+    .timeline-content {
+        width: auto !important;
+        max-width: calc(100% - 60px) !important;
+    }
+
+    /* Fix Header Layout */
+    .header-inner {
+        justify-content: space-between !important;
+    }
+
+    /* Fix Hero Spacing */
+    .hero {
+        padding-top: 7rem !important;
+        overflow: hidden;
+        /* Clip any overflowing blobs */
+    }
+
+    /* Fix Floating Cards in Hero */
+    .floating-card {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        margin: 1rem auto !important;
+        max-width: 280px !important;
+        width: 100% !important;
+    }
+
+    /* Fix Background Mesh Overflow */
+    .mesh-background {
+        width: 100% !important;
+        overflow: hidden !important;
+    }
+
+    /* ============================================
+       STRICT MOBILE FIXES (USER REQUESTED)
+       ============================================ */
+
+    /* 1. Header Compactness */
+    .header.scrolled .header-inner,
+    .header .header-inner {
+        padding: 0.5rem 1rem !important;
+        /* Reduced padding */
+        min-height: 60px;
+    }
+
+    .logo img {
+        height: 24px !important;
+        /* Force smaller logo */
+        width: auto !important;
+    }
+
+    .burger-menu {
+        transform: scale(0.9);
+        /* Slightly smaller burger */
+    }
+
+    /* 2. Hero Overflow & Floating Cards */
+    .hero {
+        overflow: hidden !important;
+        /* Cut off anything outside */
+        padding-top: 6rem !important;
+    }
+
+    .hero-visual {
+        height: auto !important;
+        min-height: 300px;
+        overflow: visible !important;
+        /* Allow image to show but container clips */
+        margin-top: 1rem !important;
+        display: flex;
+        justify-content: center;
+    }
+
+    .hero-img-main {
+        max-width: 80% !important;
+        /* Reduce main image size */
+        height: auto !important;
+    }
+
+    /* Hide or Reposition Floating Cards on Mobile to prevent overflow */
+    .floating-card {
+        display: none !important;
+        /* Hiding them on mobile is safest for overflow */
+    }
+
+    /* Keep badges but ensure they don't overflow */
+    .floating-badge {
+        transform: scale(0.8);
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) scale(0.8) !important;
+        width: max-content !important;
+    }
+
+    .floating-badge:nth-child(1) {
+        top: 60% !important;
+    }
+
+    .floating-badge:nth-child(2) {
+        top: 75% !important;
+    }
+
+    /* 3. Logo Carousel - Mobile Fixes */
+    .hero-marquee-container {
+        margin-top: 2rem !important;
+        width: 100% !important;
+        overflow: hidden !important;
+    }
+
+    .hero-marquee-wrapper {
+        padding: 1rem !important;
+    }
+
+    .hero-marquee {
+        display: flex !important;
+        gap: 2rem !important;
+        animation: scroll 20s linear infinite !important;
+        /* Ensure animation plays on mobile */
+    }
+
+    .hero-marquee img {
+        height: 40px !important;
+        /* Larger logos on mobile - doubled from 24px */
+        margin: 0 1rem !important;
+        max-width: 120px !important;
+        /* Increased max width */
+        object-fit: contain !important;
+        filter: brightness(0.3) contrast(1.2) !important;
+        opacity: 0.8 !important;
+    }
+
+    /* 4. General Layout Safety */
+    .container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+
+    .grid-12 {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Fix Services/Agency Pages Grid */
+    .service-card,
+    .card {
+        width: 100% !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 5. Contact Form - Ultra Compact Mobile */
+    .contact-hero {
+        padding-top: 4.5rem !important;
+        padding-bottom: 1rem !important;
+        min-height: auto !important;
+    }
+
+    .contact-hero h1 {
+        font-size: 1.75rem !important;
+        margin-bottom: 0.5rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .contact-hero p {
+        font-size: 0.9rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .contact-form-card {
+        padding: 1.25rem !important;
+        margin-top: 1rem !important;
+    }
+
+    .contact-form-card h3 {
+        font-size: 1.25rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* Single column layout for form fields on mobile */
+    .form-grid-2 {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .form-grid-2+div {
+        margin-bottom: 0.75rem !important;
+    }
+
+    .contact-form-card input,
+    .contact-form-card label {
+        font-size: 0.9rem !important;
+    }
+
+    .contact-form-card input {
+        padding: 0.75rem !important;
+    }
+
+    .contact-form-card label {
+        margin-bottom: 0.3rem !important;
+    }
+
+    /* Compact progress bar on mobile */
+    .progress-step {
+        gap: 0.35rem !important;
+    }
+
+    .progress-step-number {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.9rem !important;
+    }
+
+    .progress-step-label {
+        font-size: 0.8rem !important;
     }
 }
