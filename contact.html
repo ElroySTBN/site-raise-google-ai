@@ -80,14 +80,14 @@
 
 
     <main>
-        <section class="hero contact-hero" style="min-height: auto; padding-top: 6rem; padding-bottom: 2rem;">
+        <section class="hero contact-hero" style="min-height: auto; padding-top: 5rem; padding-bottom: 1rem;">
             <div class="container">
-                <div style="text-align: center; max-width: 600px; margin: 0 auto 1.5rem auto;">
+                <div style="text-align: center; max-width: 600px; margin: 0 auto 1rem auto;">
                     <div
-                        style="display: inline-block; padding: 0.4rem 0.8rem; background: rgba(0,94,184,0.1); color: var(--primary); border-radius: 100px; font-weight: 600; font-size: 0.85rem; margin-bottom: 1rem;">
+                        style="display: inline-block; padding: 0.3rem 0.8rem; background: rgba(0,94,184,0.1); color: var(--primary); border-radius: 100px; font-weight: 600; font-size: 0.8rem; margin-bottom: 0.5rem;">
                         Audit Gratuit
                     </div>
-                    <h1 style="margin-bottom: 0.75rem; font-size: 2.5rem; line-height: 1.2;">
+                    <h1 style="margin-bottom: 0.5rem; font-size: 2.2rem; line-height: 1.2;">
                         Obtenez Votre <span class="text-gradient">Audit Stratégique</span> Gratuit
                     </h1>
                     <p style="font-size: 1rem; line-height: 1.5;">
@@ -96,161 +96,158 @@
                 </div>
 
                 <!-- Multi-Step Form -->
-                <div style="max-width: 700px; margin: 0 auto;">
+                <div style="max-width: 500px; margin: 0 auto;">
                     <!-- Progress Bar -->
-                    <div style="margin-bottom: 1.5rem;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
-                            <div class="progress-step active" data-step="1">
-                                <div class="progress-step-number">1</div>
-                                <div class="progress-step-label">Informations</div>
-                            </div>
-                            <div class="progress-step" data-step="2">
-                                <div class="progress-step-number">2</div>
-                                <div class="progress-step-label">Entreprise</div>
-                            </div>
+                    <div class="progress-bar"
+                        style="display: flex; justify-content: space-between; margin-bottom: 1rem; position: relative;">
+                        <div class="progress-step active" data-step="1">
+                            <div class="progress-step-number">1</div>
+                            <div class="progress-step-label">Informations</div>
                         </div>
-                        <div
-                            style="height: 3px; background: rgba(0, 94, 184, 0.1); border-radius: 2px; overflow: hidden;">
-                            <div id="progressBar"
-                                style="height: 100%; width: 50%; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width 0.4s ease;">
-                            </div>
+                        <div class="progress-step" data-step="2">
+                            <div class="progress-step-number">2</div>
+                            <div class="progress-step-label">Entreprise</div>
                         </div>
                     </div>
-
-                    <!-- Form Card -->
-                    <div class="card contact-form-card" style="padding: 2rem;">
-                        <form id="auditForm" action="https://api.web3forms.com/submit" method="POST">
-                            <!-- Web3Forms Access Key -->
-                            <input type="hidden" name="access_key" value="2d5b666c-332d-4b13-aa40-ce437c4ee692">
-
-                            <!-- Email Configuration -->
-                            <input type="hidden" name="redirect" value="https://web3forms.com/success">
-
-                            <!-- Custom Configuration -->
-                            <input type="hidden" name="subject" value="Nouvelle demande d'audit gratuit - RaiseMed.IA">
-                            <input type="hidden" name="from_name" value="RaiseMed.IA - Formulaire Contact">
-
-                            <!-- Step 1: Personal Info -->
-                            <div class="form-step active" data-step="1">
-                                <h3 style="margin-bottom: 1.25rem; font-size: 1.5rem;">Vos Coordonnées</h3>
-                                <div class="form-grid-2"
-                                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-                                    <div>
-                                        <label
-                                            style="display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: 0.95rem;">Prénom
-                                            <span style="color: #EF4444;">*</span></label>
-                                        <input type="text" name="prenom" required
-                                            style="width: 100%; padding: 0.85rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s; font-size: 0.95rem;"
-                                            placeholder="Jean">
-                                    </div>
-                                    <div>
-                                        <label
-                                            style="display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: 0.95rem;">Nom
-                                            <span style="color: #EF4444;">*</span></label>
-                                        <input type="text" name="nom" required
-                                            style="width: 100%; padding: 0.85rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s; font-size: 0.95rem;"
-                                            placeholder="Dupont">
-                                    </div>
-                                </div>
-                                <div style="margin-bottom: 1rem;">
-                                    <label
-                                        style="display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: 0.95rem;">Téléphone
-                                        <span style="color: #EF4444;">*</span></label>
-                                    <input type="tel" name="telephone" required
-                                        style="width: 100%; padding: 0.85rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s; font-size: 0.95rem;"
-                                        placeholder="+33 6 12 34 56 78">
-                                </div>
-                                <div style="margin-bottom: 1.25rem;">
-                                    <label
-                                        style="display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: 0.95rem;">Email
-                                        <span
-                                            style="color: var(--text-light); font-size: 0.85rem;">(Optionnel)</span></label>
-                                    <input type="email" name="email"
-                                        style="width: 100%; padding: 0.85rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s; font-size: 0.95rem;"
-                                        placeholder="jean.dupont@entreprise.com">
-                                </div>
-                                <button type="button" class="btn btn-primary" onclick="nextStep()"
-                                    style="width: 100%; justify-content: center;">
-                                    Continuer
-                                    <i data-lucide="arrow-right" style="width: 20px;"></i>
-                                </button>
-                            </div>
-
-                            <!-- Step 2: Business Info -->
-                            <div class="form-step" data-step="2">
-                                <h3 style="margin-bottom: 2rem;">Votre Établissement Google</h3>
-
-                                <!-- Tutorial Card -->
-                                <div class="card"
-                                    style="background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%); border: 2px solid var(--primary); padding: 1.5rem; margin-bottom: 2rem;">
-                                    <div style="display: flex; gap: 1rem; align-items: start;">
-                                        <i data-lucide="info"
-                                            style="width: 24px; height: 24px; color: var(--primary); flex-shrink: 0;"></i>
-                                        <div>
-                                            <h4
-                                                style="color: var(--primary); margin-bottom: 0.75rem; font-size: 1.1rem;">
-                                                Comment trouver l'URL de votre fiche Google ?</h4>
-                                            <ol style="margin: 0; padding-left: 1.25rem; color: var(--text-main);">
-                                                <li style="margin-bottom: 0.5rem;">Recherchez votre entreprise sur
-                                                    <strong>Google Maps</strong>
-                                                </li>
-                                                <li style="margin-bottom: 0.5rem;">Cliquez sur votre établissement</li>
-                                                <li style="margin-bottom: 0.5rem;">Cliquez sur
-                                                    <strong>"Partager"</strong>
-                                                </li>
-                                                <li>Copiez le lien et collez-le ci-dessous</li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div style="margin-bottom: 2rem;">
-                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">URL Fiche
-                                        Google Business <span style="color: #EF4444;">*</span></label>
-                                    <input type="url" name="googleUrl" required
-                                        style="width: 100%; padding: 1rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s;"
-                                        placeholder="https://maps.app.goo.gl/...">
-                                    <div style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.5rem;">
-                                        <i data-lucide="check-circle" style="width: 14px; color: #10B981;"></i>
-                                        Exemple : https://maps.app.goo.gl/ABC123
-                                    </div>
-                                </div>
-
-                                <div style="display: flex; gap: 1rem;">
-                                    <button type="button" class="btn btn-ghost" onclick="prevStep()"
-                                        style="flex: 1; justify-content: center;">
-                                        <i data-lucide="arrow-left" style="width: 20px;"></i>
-                                        Retour
-                                    </button>
-                                    <button type="submit" class="btn btn-primary"
-                                        style="flex: 2; justify-content: center;">
-                                        <i data-lucide="send" style="width: 20px;"></i>
-                                        Envoyer ma demande
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Thank You Message (Hidden initially) -->
-                            <div id="thankYouMessage" style="display: none; text-align: center; padding: 3rem 0;">
-                                <div
-                                    style="width: 100px; height: 100px; background: linear-gradient(135deg, #10B981 0%, #059669 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem auto; box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3);">
-                                    <i data-lucide="check" style="width: 50px; height: 50px; color: white;"></i>
-                                </div>
-                                <h2 id="thankYouTitle" style="margin-bottom: 1rem; color: var(--secondary);">Merci !
-                                </h2>
-                                <p
-                                    style="font-size: 1.125rem; color: var(--text-light); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">
-                                    Votre demande d'audit a été envoyée avec succès. Nous vous contacterons sous
-                                    <strong>48 heures</strong> pour discuter de votre stratégie de croissance.
-                                </p>
-                                <a href="index.html" class="btn btn-primary">
-                                    <i data-lucide="home" style="width: 20px;"></i>
-                                    Retour à l'accueil
-                                </a>
-                            </div>
-                        </form>
+                    <div style="height: 3px; background: rgba(0, 94, 184, 0.1); border-radius: 2px; overflow: hidden;">
+                        <div id="progressBar"
+                            style="height: 100%; width: 50%; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width 0.4s ease;">
+                        </div>
                     </div>
                 </div>
+
+                <!-- Form Card -->
+                <div class="card contact-form-card" style="padding: 1.5rem;">
+                    <form id="auditForm" action="https://api.web3forms.com/submit" method="POST">
+                        <!-- Web3Forms Access Key -->
+                        <input type="hidden" name="access_key" value="2d5b666c-332d-4b13-aa40-ce437c4ee692">
+
+                        <!-- Email Configuration -->
+                        <input type="hidden" name="redirect" value="https://web3forms.com/success">
+
+                        <!-- Custom Configuration -->
+                        <input type="hidden" name="subject" value="Nouvelle demande d'audit gratuit - RaiseMed.IA">
+                        <input type="hidden" name="from_name" value="RaiseMed.IA - Formulaire Contact">
+
+                        <!-- Step 1: Personal Info -->
+                        <div class="form-step active" data-step="1">
+                            <h3 style="margin-bottom: 1.25rem; font-size: 1.5rem;">Vos Coordonnées</h3>
+                            <div class="form-grid-2"
+                                style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <div>
+                                    <label
+                                        style="display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: 0.95rem;">Prénom
+                                        <span style="color: #EF4444;">*</span></label>
+                                    <input type="text" name="prenom" required
+                                        style="width: 100%; padding: 0.85rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s; font-size: 0.95rem;"
+                                        placeholder="Jean">
+                                </div>
+                                <div>
+                                    <label
+                                        style="display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: 0.95rem;">Nom
+                                        <span style="color: #EF4444;">*</span></label>
+                                    <input type="text" name="nom" required
+                                        style="width: 100%; padding: 0.85rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s; font-size: 0.95rem;"
+                                        placeholder="Dupont">
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 0.75rem;">
+                                <label
+                                    style="display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: 0.95rem;">Téléphone
+                                    <span style="color: #EF4444;">*</span></label>
+                                <input type="tel" name="telephone" required
+                                    style="width: 100%; padding: 0.85rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s; font-size: 0.95rem;"
+                                    placeholder="+33 6 12 34 56 78">
+                            </div>
+                            <div style="margin-bottom: 1.25rem;">
+                                <label
+                                    style="display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: 0.95rem;">Email
+                                    <span
+                                        style="color: var(--text-light); font-size: 0.85rem;">(Optionnel)</span></label>
+                                <input type="email" name="email"
+                                    style="width: 100%; padding: 0.85rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s; font-size: 0.95rem;"
+                                    placeholder="jean.dupont@entreprise.com">
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="nextStep()"
+                                style="width: 100%; justify-content: center;">
+                                Continuer
+                                <i data-lucide="arrow-right" style="width: 20px;"></i>
+                            </button>
+                        </div>
+
+                        <!-- Step 2: Business Info -->
+                        <div class="form-step" data-step="2">
+                            <h3 style="margin-bottom: 2rem;">Votre Établissement Google</h3>
+
+                            <!-- Tutorial Card -->
+                            <div class="card"
+                                style="background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%); border: 2px solid var(--primary); padding: 1.5rem; margin-bottom: 2rem;">
+                                <div style="display: flex; gap: 1rem; align-items: start;">
+                                    <i data-lucide="info"
+                                        style="width: 24px; height: 24px; color: var(--primary); flex-shrink: 0;"></i>
+                                    <div>
+                                        <h4 style="color: var(--primary); margin-bottom: 0.75rem; font-size: 1.1rem;">
+                                            Comment trouver l'URL de votre fiche Google ?</h4>
+                                        <ol style="margin: 0; padding-left: 1.25rem; color: var(--text-main);">
+                                            <li style="margin-bottom: 0.5rem;">Recherchez votre entreprise sur
+                                                <strong>Google Maps</strong>
+                                            </li>
+                                            <li style="margin-bottom: 0.5rem;">Cliquez sur votre établissement</li>
+                                            <li style="margin-bottom: 0.5rem;">Cliquez sur
+                                                <strong>"Partager"</strong>
+                                            </li>
+                                            <li>Copiez le lien et collez-le ci-dessous</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 2rem;">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">URL Fiche
+                                    Google Business <span style="color: #EF4444;">*</span></label>
+                                <input type="url" name="googleUrl" required
+                                    style="width: 100%; padding: 1rem; border: 2px solid #E2E8F0; border-radius: 8px; font-family: var(--font-body); transition: border-color 0.3s;"
+                                    placeholder="https://maps.app.goo.gl/...">
+                                <div style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.5rem;">
+                                    <i data-lucide="check-circle" style="width: 14px; color: #10B981;"></i>
+                                    Exemple : https://maps.app.goo.gl/ABC123
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 1rem;">
+                                <button type="button" class="btn btn-ghost" onclick="prevStep()"
+                                    style="flex: 1; justify-content: center;">
+                                    <i data-lucide="arrow-left" style="width: 20px;"></i>
+                                    Retour
+                                </button>
+                                <button type="submit" class="btn btn-primary" style="flex: 2; justify-content: center;">
+                                    <i data-lucide="send" style="width: 20px;"></i>
+                                    Envoyer ma demande
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Thank You Message (Hidden initially) -->
+                        <div id="thankYouMessage" style="display: none; text-align: center; padding: 3rem 0;">
+                            <div
+                                style="width: 100px; height: 100px; background: linear-gradient(135deg, #10B981 0%, #059669 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem auto; box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3);">
+                                <i data-lucide="check" style="width: 50px; height: 50px; color: white;"></i>
+                            </div>
+                            <h2 id="thankYouTitle" style="margin-bottom: 1rem; color: var(--secondary);">Merci !
+                            </h2>
+                            <p
+                                style="font-size: 1.125rem; color: var(--text-light); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+                                Votre demande d'audit a été envoyée avec succès. Nous vous contacterons sous
+                                <strong>48 heures</strong> pour discuter de votre stratégie de croissance.
+                            </p>
+                            <a href="index.html" class="btn btn-primary">
+                                <i data-lucide="home" style="width: 20px;"></i>
+                                Retour à l'accueil
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
             </div>
         </section>
     </main>

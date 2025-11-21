@@ -1344,13 +1344,13 @@ p {
         fill: white;
     }
 
-    /* Footer Logo Container */
+    /* Footer Logo Container - Transparent on Mobile */
     .footer-logo-container {
-        background: white;
-        padding: 0.75rem 1rem;
-        border-radius: 12px;
+        background: transparent;
+        padding: 0;
+        border-radius: 0;
         display: inline-block;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
     }
 
     /* WhatsApp Button - Small Mobile */
@@ -1672,12 +1672,9 @@ p {
     }
 
     /* Keep badges but ensure they don't overflow */
+    /* Hide badges on mobile to clear view of character */
     .floating-badge {
-        transform: scale(0.8);
-        left: 50% !important;
-        right: auto !important;
-        transform: translateX(-50%) scale(0.8) !important;
-        width: max-content !important;
+        display: none !important;
     }
 
     .floating-badge:nth-child(1) {
@@ -1690,13 +1687,16 @@ p {
 
     /* 3. Logo Carousel - Mobile Fixes */
     .hero-marquee-container {
-        margin-top: 2rem !important;
+        margin-top: 3rem !important;
         width: 100% !important;
         overflow: hidden !important;
+        padding: 0 !important;
     }
 
     .hero-marquee-wrapper {
-        padding: 1rem !important;
+        padding: 1rem 0 !important;
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
 
     .hero-marquee {
@@ -1741,14 +1741,14 @@ p {
 
     /* 5. Contact Form - Ultra Compact Mobile */
     .contact-hero {
-        padding-top: 4.5rem !important;
-        padding-bottom: 1rem !important;
+        padding-top: 3.5rem !important;
+        padding-bottom: 0.5rem !important;
         min-height: auto !important;
     }
 
     .contact-hero h1 {
-        font-size: 1.75rem !important;
-        margin-bottom: 0.5rem !important;
+        font-size: 1.5rem !important;
+        margin-bottom: 0.25rem !important;
         line-height: 1.2 !important;
     }
 
@@ -1759,24 +1759,24 @@ p {
     }
 
     .contact-form-card {
-        padding: 1.25rem !important;
-        margin-top: 1rem !important;
+        padding: 1rem !important;
+        margin-top: 0.5rem !important;
     }
 
     .contact-form-card h3 {
-        font-size: 1.25rem !important;
-        margin-bottom: 1rem !important;
+        font-size: 1.1rem !important;
+        margin-bottom: 0.75rem !important;
     }
 
     /* Single column layout for form fields on mobile */
     .form-grid-2 {
         grid-template-columns: 1fr !important;
-        gap: 0.75rem !important;
-        margin-bottom: 0.75rem !important;
+        gap: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
     }
 
     .form-grid-2+div {
-        margin-bottom: 0.75rem !important;
+        margin-bottom: 0.5rem !important;
     }
 
     .contact-form-card input,
@@ -1785,11 +1785,12 @@ p {
     }
 
     .contact-form-card input {
-        padding: 0.75rem !important;
+        padding: 0.6rem !important;
     }
 
     .contact-form-card label {
-        margin-bottom: 0.3rem !important;
+        margin-bottom: 0.2rem !important;
+        font-size: 0.85rem !important;
     }
 
     /* Compact progress bar on mobile */
