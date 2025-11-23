@@ -514,13 +514,14 @@ const heroVisual = document.querySelector('.hero-visual');
 // Check if mobile device
 const isMobile = window.innerWidth <= 768;
 
-if (threeContainer && heroVisual && typeof THREE !== 'undefined' && !PERFORMANCE_MODE && !isMobile) {
+if (threeContainer && heroVisual && typeof THREE !== 'undefined' && !PERFORMANCE_MODE) {
     // Scene setup
     const scene = new THREE.Scene();
     
-    // Renderer setup
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // Renderer setup - optimisé pour mobile
+    const renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true });
+    // Réduire pixelRatio sur mobile pour meilleures performances
+    renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
     const initialWidth = heroVisual.offsetWidth;
     const initialHeight = heroVisual.offsetHeight;
     renderer.setSize(initialWidth, initialHeight);
@@ -530,16 +531,20 @@ if (threeContainer && heroVisual && typeof THREE !== 'undefined' && !PERFORMANCE
     // Utiliser le bon aspect ratio dès le début pour éviter la déformation
     const initialAspect = initialWidth / initialHeight;
     const camera = new THREE.PerspectiveCamera(60, initialAspect, 0.1, 2000);
-    camera.position.z = 1000; // Plus éloignée pour voir tout le personnage sans coupure
-    camera.position.y = -100; // Ajuster vers le bas pour mieux voir le personnage positionné plus bas
+    // Position caméra ajustée pour mobile et desktop
+    camera.position.z = isMobile ? 700 : 1000;
+    camera.position.y = isMobile ? -50 : -100;
     
-    // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    // Lights - optimisées pour mobile
+    const ambientLight = new THREE.AmbientLight(0xffffff, isMobile ? 0.8 : 0.6);
     scene.add(ambientLight);
     
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionalLight.position.set(100, 100, 100);
-    scene.add(directionalLight);
+    // DirectionalLight seulement sur desktop pour économiser les performances
+    if (!isMobile) {
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(100, 100, 100);
+        scene.add(directionalLight);
+    }
     
     // Character texture loader
     const textureLoader = new THREE.TextureLoader();
@@ -561,8 +566,8 @@ if (threeContainer && heroVisual && typeof THREE !== 'undefined' && !PERFORMANCE
         const imageHeight = texture.image.height;
         
         // Calculer les proportions pour préserver le ratio d'aspect
-        // Taille de base pour agrandir (hauteur de référence) - réduite encore
-        const baseHeight = 1200;
+        // Taille de base pour agrandir (hauteur de référence) - réduite sur mobile
+        const baseHeight = isMobile ? 800 : 1200;
         const aspectRatio = imageWidth / imageHeight;
         const width = baseHeight * aspectRatio;
         const height = baseHeight;
@@ -581,14 +586,36 @@ if (threeContainer && heroVisual && typeof THREE !== 'undefined' && !PERFORMANCE
         // Retourner le personnage (rotation de 180 degrés sur l'axe X)
         characterMesh.rotation.x = Math.PI;
         // Positionner le personnage plus bas, au niveau du haut du bouton "Lancer mon Audit d'Éligibilité"
-        // Position beaucoup plus basse pour aligner avec le bouton
-        characterMesh.position.y = -350;
+        // Position ajustée pour mobile et desktop
+        characterMesh.position.y = isMobile ? -200 : -350;
         scene.add(characterMesh);
     });
     
     // Dashboard configuration avec vraies images de dashboards
-    const dashboardCount = isMobile ? 3 : 5;
-    const dashboardConfig = [
+    // Configuration différente pour mobile (tailles et rayons réduits)
+    const dashboardConfigBase = isMobile ? [
+        { 
+            texture: 'carré-dash.png', 
+            size: 100, 
+            radius: 180, 
+            speed: 0.5, 
+            initialAngle: 0 
+        },
+        { 
+            texture: 'ovale-dash.png', 
+            size: 110, 
+            radius: 220, 
+            speed: 0.7, 
+            initialAngle: 120 
+        },
+        { 
+            texture: 'triangle-dash.png', 
+            size: 105, 
+            radius: 260, 
+            speed: 1.0, 
+            initialAngle: 240 
+        }
+    ] : [
         { 
             texture: 'carré-dash.png', 
             size: 150, 
@@ -624,7 +651,8 @@ if (threeContainer && heroVisual && typeof THREE !== 'undefined' && !PERFORMANCE
             speed: 1.5, 
             initialAngle: 288 
         }
-    ].slice(0, dashboardCount);
+    ];
+    const dashboardConfig = dashboardConfigBase;
     
     // Create dashboards with real textures
     const dashboards = [];
@@ -650,10 +678,11 @@ if (threeContainer && heroVisual && typeof THREE !== 'undefined' && !PERFORMANCE
         });
     });
     
-    // Create orbit rings
+    // Create orbit rings - segments réduits sur mobile
     const rings = [];
+    const ringSegments = isMobile ? 32 : 64;
     dashboardConfig.forEach((config) => {
-        const ringGeometry = new THREE.RingGeometry(config.radius - 2, config.radius + 2, 64);
+        const ringGeometry = new THREE.RingGeometry(config.radius - 2, config.radius + 2, ringSegments);
         const ringMaterial = new THREE.MeshBasicMaterial({ 
             color: 0xffffff,
             transparent: true,

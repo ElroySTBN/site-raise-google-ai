@@ -1678,13 +1678,14 @@ p {
     }
 
     .hero-visual {
-        height: auto !important;
-        min-height: 300px;
+        height: 500px !important;
+        min-height: 500px !important;
         overflow: visible !important;
-        /* Allow image to show but container clips */
+        /* Allow 3D scene to show */
         margin-top: 1rem !important;
         display: flex;
         justify-content: center;
+        position: relative;
     }
 
     .hero-img-main {
@@ -1695,7 +1696,15 @@ p {
 
     /* Three.js Container - Mobile Optimization */
     #threejs-container {
-        opacity: 0.9;
+        opacity: 1 !important;
+        display: block !important;
+        visibility: visible !important;
+        z-index: 1 !important;
+    }
+    
+    #threejs-container canvas {
+        display: block !important;
+        visibility: visible !important;
     }
 
     /* Hide or Reposition Floating Cards on Mobile to prevent overflow */
