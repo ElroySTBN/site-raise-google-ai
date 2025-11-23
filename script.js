@@ -503,3 +503,313 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
 });
+
+// ============================================
+// THREE.JS 3D ORBITAL SYSTEM
+// ============================================
+
+const threeContainer = document.getElementById('threejs-container');
+const heroVisual = document.querySelector('.hero-visual');
+
+// Check if mobile device
+const isMobile = window.innerWidth <= 768;
+
+if (threeContainer && heroVisual && typeof THREE !== 'undefined' && !PERFORMANCE_MODE && !isMobile) {
+    // Scene setup
+    const scene = new THREE.Scene();
+    
+    // Renderer setup
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    const initialWidth = heroVisual.offsetWidth;
+    const initialHeight = heroVisual.offsetHeight;
+    renderer.setSize(initialWidth, initialHeight);
+    threeContainer.appendChild(renderer.domElement);
+    
+    // Camera setup - ajustée pour voir le personnage agrandi (élément principal)
+    // Utiliser le bon aspect ratio dès le début pour éviter la déformation
+    const initialAspect = initialWidth / initialHeight;
+    const camera = new THREE.PerspectiveCamera(60, initialAspect, 0.1, 2000);
+    camera.position.z = 1000; // Plus éloignée pour voir tout le personnage sans coupure
+    camera.position.y = -100; // Ajuster vers le bas pour mieux voir le personnage positionné plus bas
+    
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+    
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight.position.set(100, 100, 100);
+    scene.add(directionalLight);
+    
+    // Character texture loader
+    const textureLoader = new THREE.TextureLoader();
+    let characterMesh = null;
+    
+    // Create a group for dashboards (so we can rotate them independently)
+    const dashboardsGroup = new THREE.Group();
+    scene.add(dashboardsGroup);
+    
+    textureLoader.load('Copie de Sans titre (1).png', (texture) => {
+        // Préserver les couleurs originales du PNG
+        texture.colorSpace = THREE.SRGBColorSpace;
+        
+        // S'assurer que la texture n'est pas déformée
+        texture.flipY = false; // Important pour éviter les inversions
+        
+        // Obtenir les dimensions originales de l'image
+        const imageWidth = texture.image.width;
+        const imageHeight = texture.image.height;
+        
+        // Calculer les proportions pour préserver le ratio d'aspect
+        // Taille de base pour agrandir (hauteur de référence) - réduite encore
+        const baseHeight = 1200;
+        const aspectRatio = imageWidth / imageHeight;
+        const width = baseHeight * aspectRatio;
+        const height = baseHeight;
+        
+        // Créer la géométrie avec les proportions originales exactes
+        const geometry = new THREE.PlaneGeometry(width, height);
+        
+        const material = new THREE.MeshBasicMaterial({ 
+            map: texture,
+            transparent: true,
+            side: THREE.DoubleSide,
+            // Pas de modification de couleur - couleurs originales
+            color: 0xffffff
+        });
+        characterMesh = new THREE.Mesh(geometry, material);
+        // Retourner le personnage (rotation de 180 degrés sur l'axe X)
+        characterMesh.rotation.x = Math.PI;
+        // Positionner le personnage plus bas, au niveau du haut du bouton "Lancer mon Audit d'Éligibilité"
+        // Position beaucoup plus basse pour aligner avec le bouton
+        characterMesh.position.y = -350;
+        scene.add(characterMesh);
+    });
+    
+    // Dashboard configuration avec vraies images de dashboards
+    const dashboardCount = isMobile ? 3 : 5;
+    const dashboardConfig = [
+        { 
+            texture: 'carré-dash.png', 
+            size: 150, 
+            radius: 280, 
+            speed: 0.5, 
+            initialAngle: 0 
+        },
+        { 
+            texture: 'ovale-dash.png', 
+            size: 170, 
+            radius: 320, 
+            speed: 0.7, 
+            initialAngle: 72 
+        },
+        { 
+            texture: 'triangle-dash.png', 
+            size: 160, 
+            radius: 360, 
+            speed: 1.0, 
+            initialAngle: 144 
+        },
+        { 
+            texture: 'octogone-dash.png', 
+            size: 150, 
+            radius: 400, 
+            speed: 1.2, 
+            initialAngle: 216 
+        },
+        { 
+            texture: 'dash.png', 
+            size: 170, 
+            radius: 440, 
+            speed: 1.5, 
+            initialAngle: 288 
+        }
+    ].slice(0, dashboardCount);
+    
+    // Create dashboards with real textures
+    const dashboards = [];
+    let loadedDashboards = 0;
+    
+    dashboardConfig.forEach((config, index) => {
+        textureLoader.load(config.texture, (texture) => {
+            const geometry = new THREE.PlaneGeometry(config.size, config.size);
+            const material = new THREE.MeshBasicMaterial({ 
+                map: texture,
+                transparent: true,
+                opacity: 0.95,
+                side: THREE.DoubleSide
+            });
+            const dashboard = new THREE.Mesh(geometry, material);
+            dashboard.userData = { ...config, angle: config.initialAngle };
+            dashboardsGroup.add(dashboard);
+            dashboards.push(dashboard);
+            
+            loadedDashboards++;
+        }, undefined, (error) => {
+            console.error('Error loading dashboard texture:', config.texture, error);
+        });
+    });
+    
+    // Create orbit rings
+    const rings = [];
+    dashboardConfig.forEach((config) => {
+        const ringGeometry = new THREE.RingGeometry(config.radius - 2, config.radius + 2, 64);
+        const ringMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.05,
+            side: THREE.DoubleSide,
+            depthWrite: false,
+            depthTest: false
+        });
+        const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+        ring.rotation.x = Math.PI / 2;
+        dashboardsGroup.add(ring);
+        rings.push(ring);
+    });
+    
+    // Mouse tracking for parallax (disabled on mobile)
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetRotationX = 0;
+    let targetRotationY = 0;
+    let currentRotationX = 0;
+    let currentRotationY = 0;
+    
+    if (!isMobile) {
+        heroVisual.addEventListener('mousemove', (e) => {
+            const rect = heroVisual.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;
+            const y = (e.clientY - rect.top) / rect.height;
+            
+            // Convert to -1 to 1 range
+            mouseX = (x - 0.5) * 2;
+            mouseY = (y - 0.5) * 2;
+            
+            // Calculate target rotation (max ±8 degrees - plus subtil)
+            targetRotationX = mouseY * 8 * (Math.PI / 180);
+            targetRotationY = mouseX * 8 * (Math.PI / 180);
+        });
+    }
+    
+    // Scroll tracking
+    let scrollProgress = 0;
+    let scrollVelocity = 0;
+    let lastScrollY = window.scrollY;
+    
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        scrollVelocity = Math.abs(currentScrollY - lastScrollY);
+        lastScrollY = currentScrollY;
+        
+        const heroRect = heroVisual.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const heroTop = heroRect.top;
+        const heroHeight = heroRect.height;
+        
+        if (heroTop < viewportHeight && heroTop + heroHeight > 0) {
+            scrollProgress = Math.max(0, Math.min(1, (viewportHeight - heroTop) / (viewportHeight + heroHeight)));
+        } else {
+            scrollProgress = 0;
+        }
+    });
+    
+    // Animation loop
+    let animationId;
+    let currentTime = 0;
+    
+    function animate() {
+        animationId = requestAnimationFrame(animate);
+        
+        currentTime += 0.016;
+        
+        // Smooth rotation for dashboards group (lerp) - only on desktop
+        // This rotates only the dashboards, not the character
+        if (!isMobile) {
+            currentRotationX += (targetRotationX - currentRotationX) * 0.05;
+            currentRotationY += (targetRotationY - currentRotationY) * 0.05;
+            
+            // Apply rotation to dashboards group (not camera, so character stays fixed)
+            dashboardsGroup.rotation.x = currentRotationX;
+            dashboardsGroup.rotation.y = currentRotationY;
+        }
+        
+        // Subtle floating animation for character
+        if (characterMesh) {
+            characterMesh.position.y = Math.sin(currentTime * 0.5) * 10; // Flottement subtil
+        }
+        
+        // Scroll multiplier for orbital speed
+        const scrollMultiplier = 1 + (scrollProgress * 1.5) + (scrollVelocity * 0.01);
+        
+        // Update dashboard positions
+        dashboards.forEach((dashboard) => {
+            const config = dashboard.userData;
+            config.angle += config.speed * scrollMultiplier * 0.01;
+            
+            const x = Math.cos(config.angle) * config.radius;
+            const z = Math.sin(config.angle) * config.radius;
+            
+            dashboard.position.x = x;
+            dashboard.position.z = z;
+            dashboard.position.y = 0;
+            
+            // Keep dashboards facing forward (no lookAt to avoid movement issues)
+            dashboard.rotation.x = 0;
+            dashboard.rotation.y = 0;
+            
+            // Rotate dashboards on themselves
+            dashboard.rotation.z += 0.005;
+        });
+        
+        renderer.render(scene, camera);
+    }
+    
+    // Handle resize
+    function handleResize() {
+        const width = heroVisual.offsetWidth;
+        const height = heroVisual.offsetHeight;
+        
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        
+        renderer.setSize(width, height);
+    }
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Intersection Observer for performance
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animate();
+            } else {
+                cancelAnimationFrame(animationId);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    observer.observe(heroVisual);
+    
+    // Start animation
+    animate();
+}
+
+// ============================================
+// LOGO CAROUSEL PAUSE ON HOVER
+// ============================================
+
+const heroMarquee = document.querySelector('.hero-marquee');
+const heroMarqueeWrapper = document.querySelector('.hero-marquee-wrapper');
+
+if (heroMarquee && heroMarqueeWrapper) {
+    // Pause animation on hover
+    heroMarqueeWrapper.addEventListener('mouseenter', () => {
+        heroMarquee.classList.add('paused');
+    });
+    
+    // Resume animation when mouse leaves
+    heroMarqueeWrapper.addEventListener('mouseleave', () => {
+        heroMarquee.classList.remove('paused');
+    });
+}

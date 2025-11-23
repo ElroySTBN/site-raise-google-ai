@@ -453,6 +453,29 @@ p {
     transform: perspective(1000px) rotateY(0deg);
 }
 
+/* Three.js Container */
+#threejs-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: visible;
+}
+
+#threejs-container canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: visible;
+}
+
+.hero-visual {
+    position: relative;
+    overflow: visible;
+}
+
 /* Stats Section */
 .stats-section {
     padding: 6rem 0;
@@ -716,19 +739,24 @@ p {
     display: flex;
     gap: 4rem;
     width: max-content;
-    animation: scroll 30s linear infinite;
+    animation: scroll 18s linear infinite;
+}
+
+.hero-marquee.paused {
+    animation-play-state: paused;
 }
 
 .hero-marquee img {
-    height: 50px;
-    filter: brightness(0.3) contrast(1.2);
+    height: 80px;
+    filter: grayscale(100%) brightness(0.3) contrast(1.2);
     opacity: 0.8;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
 .hero-marquee img:hover {
-    filter: brightness(0.5) contrast(1.3);
+    filter: grayscale(0%) brightness(1) contrast(1);
     opacity: 1;
+    transform: scale(1.05);
 }
 
 @keyframes scroll {
@@ -1663,6 +1691,11 @@ p {
         max-width: 80% !important;
         /* Reduce main image size */
         height: auto !important;
+    }
+
+    /* Three.js Container - Mobile Optimization */
+    #threejs-container {
+        opacity: 0.9;
     }
 
     /* Hide or Reposition Floating Cards on Mobile to prevent overflow */

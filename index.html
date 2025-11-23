@@ -16,6 +16,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 </head>
 
 <body>
@@ -115,23 +116,32 @@
 
 
                     </div>
-                    <div class="hero-visual" style="height: 400px;">
-                        <!-- Professional 3D illustration from image bank -->
-                        <img src="3.png" alt="RaiseMed AI" class="hero-img-main" loading="lazy">
+                    <div class="hero-visual" style="height: 600px; overflow: visible;">
+                        <!-- Three.js 3D Scene Container -->
+                        <div id="threejs-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
 
-                        <!-- Floating UI Card 1 - Nouveaux Patients -->
+                        <!-- Floating UI Card 1 - Performance Metrics -->
                         <div class="card floating-card floating-card-1"
-                            style="position: absolute; top: 15%; left: -5%; padding: 1.25rem; width: 190px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
-                                <div style="width: 8px; height: 8px; background: #10B981; border-radius: 50%;"></div>
-                                <span
-                                    style="font-weight: 600; font-size: 0.8rem; color: var(--text-light);">Résultats</span>
+                            style="position: absolute; top: 15%; left: -5%; padding: 1.5rem; width: 220px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.98) 100%); border: 1px solid rgba(0,94,184,0.1);">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                                <div style="width: 10px; height: 10px; background: linear-gradient(135deg, #10B981 0%, #059669 100%); border-radius: 50%; box-shadow: 0 0 8px rgba(16,185,129,0.4);"></div>
+                                <span style="font-weight: 700; font-size: 0.75rem; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.05em;">Performance</span>
                             </div>
-                            <div
-                                style="font-size: 1.75rem; font-weight: 700; color: var(--secondary); line-height: 1.2;">
-                                +45%</div>
-                            <div style="font-size: 0.75rem; color: var(--text-light); font-weight: 500;">Nouveaux
-                                Patients</div>
+                            <div style="margin-bottom: 0.75rem;">
+                                <div style="font-size: 2.25rem; font-weight: 800; color: var(--secondary); line-height: 1; margin-bottom: 0.25rem; background: linear-gradient(135deg, #005EB8 0%, #10B981 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                                    +127%</div>
+                                <div style="font-size: 0.7rem; color: var(--text-light); font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em;">Croissance Leads</div>
+                            </div>
+                            <div style="padding-top: 0.75rem; border-top: 1px solid rgba(0,0,0,0.08);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                    <span style="font-size: 0.7rem; color: var(--text-light);">Position Google</span>
+                                    <span style="font-size: 0.85rem; font-weight: 700; color: #10B981;">Top 3</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 0.7rem; color: var(--text-light);">ROI Moyen</span>
+                                    <span style="font-size: 0.85rem; font-weight: 700; color: #005EB8;">4.2x</span>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Animated Badge - IA Propriétaire -->
@@ -165,21 +175,30 @@
                 style="width: 100%; overflow: hidden; mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);">
                 <div class="hero-marquee">
                     <!-- Duplicate logos for infinite scroll effect -->
-                    <img src="Design sans titre (21)/1.png" alt="Client Logo" loading="lazy">
-                    <img src="Design sans titre (21)/2.png" alt="Client Logo" loading="lazy">
-                    <img src="Design sans titre (21)/3.png" alt="Client Logo" loading="lazy">
-                    <img src="Design sans titre (21)/4.png" alt="Client Logo" loading="lazy">
-                    <img src="Design sans titre (21)/5.png" alt="Client Logo" loading="lazy">
-                    <img src="Design sans titre (21)/1.png" alt="Client Logo" loading="lazy">
-                    <img src="Design sans titre (21)/2.png" alt="Client Logo" loading="lazy">
-                    <img src="Design sans titre (21)/3.png" alt="Client Logo" loading="lazy">
-                    <img src="Design sans titre (21)/4.png" alt="Client Logo" loading="lazy">
-                    <img src="Design sans titre (21)/5.png" alt="Client Logo" loading="lazy">
-                    <img src="Design sans titre (21)/1.png" alt="Client Logo" loading="lazy">
-                    <img src="Design sans titre (21)/2.png" alt="Client Logo" loading="lazy">
-                    <img src="Design sans titre (21)/3.png" alt="Client Logo" loading="lazy">
-                    <img src="Design sans titre (21)/4.png" alt="Client Logo" loading="lazy">
-                    <img src="Design sans titre (21)/5.png" alt="Client Logo" loading="lazy">
+                    <img src="Design sans titre (21)/1.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="Design sans titre (21)/2.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="Design sans titre (21)/3.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="Design sans titre (21)/4.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="Design sans titre (21)/5.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="8.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="9.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="10.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="Design sans titre (21)/1.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="Design sans titre (21)/2.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="Design sans titre (21)/3.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="Design sans titre (21)/4.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="Design sans titre (21)/5.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="8.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="9.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="10.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="Design sans titre (21)/1.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="Design sans titre (21)/2.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="Design sans titre (21)/3.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="Design sans titre (21)/4.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="Design sans titre (21)/5.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="8.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="9.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
+                    <img src="10.png" alt="Client Logo" loading="lazy" style="width: auto; height: 80px; object-fit: contain;">
                 </div>
             </div>
         </div>
