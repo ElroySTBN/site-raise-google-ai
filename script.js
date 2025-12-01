@@ -6,6 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
 });
 
+// Loader Logic
+window.addEventListener('load', () => {
+    // Loader Logic Removed
+
+});
+
 // ============================================
 // SCROLL TRIGGER ANIMATIONS
 // ============================================
@@ -133,7 +139,7 @@ if (floatingCard1 && floatingCard2) {
             gsap.to([floatingCard1, floatingCard2], {
                 x: 0,
                 y: 0,
-                duration: 1,
+                duration: 0.8,
                 ease: 'power2.out'
             });
         });
@@ -173,7 +179,7 @@ if (headerCTA) {
 // COUNT-UP ANIMATION FOR STATS
 // ============================================
 
-function animateCountUp(element, targetValue, duration = 2) {
+function animateCountUp(element, targetValue, duration = 0.8) {
     const startValue = 0;
     const increment = targetValue / (duration * 60); // 60fps
     let currentValue = startValue;
@@ -314,6 +320,7 @@ function activateStep(stepNumber) {
             ease: 'power2.out'
         })
         .to(marker, {
+            stagger: 0.1,
             scale: 1.1,
             duration: animationDuration * 0.3,
             ease: 'elastic.out(1, 0.5)'
@@ -523,8 +530,8 @@ if (threeContainer && heroVisual && typeof THREE !== 'undefined') {
 
     // Renderer setup - optimisé pour mobile
     const renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true });
-    // Réduire pixelRatio sur mobile pour meilleures performances
-    renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
+    // Réduire pixelRatio sur mobile pour meilleures performances mais garder netteté
+    renderer.setPixelRatio(isMobile ? Math.min(window.devicePixelRatio, 2) : Math.min(window.devicePixelRatio, 2));
     const initialWidth = heroVisual.offsetWidth;
     const initialHeight = heroVisual.offsetHeight;
     renderer.setSize(initialWidth, initialHeight);
@@ -557,40 +564,58 @@ if (threeContainer && heroVisual && typeof THREE !== 'undefined') {
     const dashboardsGroup = new THREE.Group();
     scene.add(dashboardsGroup);
 
-    textureLoader.load('Copie de Sans titre (1).png', (texture) => {
+    textureLoader.load(`Copie de Sans titre (1).png?v=${new Date().getTime()}`, (texture) => {
         // Préserver les couleurs originales du PNG
         texture.colorSpace = THREE.SRGBColorSpace;
 
         // S'assurer que la texture n'est pas déformée
-        texture.flipY = false; // Important pour éviter les inversions
+        texture.flipY = false;
 
         // Obtenir les dimensions originales de l'image
         const imageWidth = texture.image.width;
         const imageHeight = texture.image.height;
-
-        // Calculer les proportions pour préserver le ratio d'aspect
-        // Taille de base pour agrandir (hauteur de référence) - réduite sur mobile
-        const baseHeight = isMobile ? 800 : 1200;
         const aspectRatio = imageWidth / imageHeight;
-        const width = baseHeight * aspectRatio;
-        const height = baseHeight;
 
-        // Créer la géométrie avec les proportions originales exactes
-        const geometry = new THREE.PlaneGeometry(width, height);
+        // Configuration pour le crop carré (focus buste)
+        // On veut un carré, donc width = height
+        const squareSize = isMobile ? 600 : 800;
+
+        // Créer une géométrie carrée
+        const geometry = new THREE.PlaneGeometry(squareSize, squareSize);
+
+        // Ajuster la texture pour qu'elle remplisse le carré sans déformation (cover)
+        // L'image est plus haute que large (portrait)
+        // On garde toute la largeur (U = 0 à 1)
+        // On ne garde qu'une portion de la hauteur (V) correspondant au ratio
+
+        // repeat.y = combien de fois la texture se répète verticalement pour remplir l'espace
+        // Si on met repeat.y < 1, on zoome (on affiche qu'une partie)
+        // Ici on veut afficher une portion carrée de l'image rectangulaire
+        // La portion carrée a pour hauteur = imageWidth
+        // Donc la fraction de la hauteur totale est imageWidth / imageHeight = aspectRatio
+
+        texture.repeat.set(1, aspectRatio);
+
+        // Offset pour centrer ou aligner en haut
+        // offset.y = 1 - repeat.y aligne en haut (car V va de 0 bas à 1 haut)
+        // On veut peut-être descendre un peu pour ne pas couper le haut de la tête si c'est trop serré
+        // Mais commençons par aligner en haut pour le buste
+        texture.offset.y = 1 - aspectRatio;
+
+        // Centrer horizontalement (déjà le cas si repeat.x = 1)
+        texture.offset.x = 0;
 
         const material = new THREE.MeshBasicMaterial({
             map: texture,
             transparent: true,
             side: THREE.DoubleSide,
-            // Pas de modification de couleur - couleurs originales
             color: 0xffffff
         });
         characterMesh = new THREE.Mesh(geometry, material);
-        // Retourner le personnage (rotation de 180 degrés sur l'axe X)
         characterMesh.rotation.x = Math.PI;
-        // Positionner le personnage plus bas, au niveau du haut du bouton "Lancer mon Audit d'Éligibilité"
-        // Position ajustée pour mobile et desktop
-        characterMesh.position.y = isMobile ? -200 : -350;
+
+        // Positionner le personnage
+        characterMesh.position.y = isMobile ? -100 : -200; // Remonté car c'est un carré maintenant
         scene.add(characterMesh);
     });
 
@@ -787,61 +812,145 @@ if (threeContainer && heroVisual && typeof THREE !== 'undefined') {
             dashboard.position.y = 0;
 
             // Keep dashboards facing forward (no lookAt to avoid movement issues)
-            dashboard.rotation.x = 0;
-            dashboard.rotation.y = 0;
-
-            // Rotate dashboards on themselves
-            dashboard.rotation.z += 0.005;
         });
 
         renderer.render(scene, camera);
     }
 
+    animate();
+
     // Handle resize
-    function handleResize() {
+    window.addEventListener('resize', () => {
+        // Update isMobile check
+        // const isMobile = window.innerWidth <= 768; // Already global
+
         const width = heroVisual.offsetWidth;
         const height = heroVisual.offsetHeight;
 
+        renderer.setSize(width, height);
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
 
-        renderer.setSize(width, height);
+        // Update pixel ratio if needed
+        renderer.setPixelRatio(isMobile ? Math.min(window.devicePixelRatio, 2) : Math.min(window.devicePixelRatio, 2));
+    });
+}
+
+// ============================================
+// TESTIMONIALS SLIDER (Agency Page)
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+
+    if (slides.length > 0 && dots.length > 0) {
+        let currentSlide = 0;
+        let autoSlideInterval;
+
+        function showSlide(index) {
+            // Handle wrapping
+            if (index >= slides.length) index = 0;
+            if (index < 0) index = slides.length - 1;
+
+            currentSlide = index;
+
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+
+            dots.forEach((dot, i) => {
+                if (i === currentSlide) {
+                    dot.style.background = 'var(--primary)';
+                    dot.classList.add('active');
+                } else {
+                    dot.style.background = 'transparent';
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function startAutoSlide() {
+            // Clear existing interval just in case
+            if (autoSlideInterval) clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        // Dot click handlers
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopAutoSlide();
+                showSlide(index);
+                startAutoSlide();
+            });
+        });
+
+        // Pause on hover
+        const sliderContainer = document.querySelector('.testimonials-slider');
+        if (sliderContainer) {
+            sliderContainer.addEventListener('mouseenter', stopAutoSlide);
+            sliderContainer.addEventListener('mouseleave', startAutoSlide);
+
+            // Touch Swipe Support
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            sliderContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                stopAutoSlide();
+            }, { passive: true });
+
+            sliderContainer.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                startAutoSlide();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const swipeThreshold = 50; // Minimum distance for swipe
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // Swipe Left (Next)
+                    nextSlide();
+                }
+                if (touchEndX > touchStartX + swipeThreshold) {
+                    // Swipe Right (Prev)
+                    showSlide(currentSlide - 1);
+                }
+            }
+        }
+
+        // Initialize
+        showSlide(0);
+        startAutoSlide();
     }
 
-    window.addEventListener('resize', handleResize);
 
-    // Intersection Observer for performance
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animate();
-            } else {
-                cancelAnimationFrame(animationId);
-            }
+    // ============================================
+    // LOGO CAROUSEL PAUSE ON HOVER
+    // ============================================
+
+    const heroMarquee = document.querySelector('.hero-marquee');
+    const heroMarqueeWrapper = document.querySelector('.hero-marquee-wrapper');
+
+    if (heroMarquee && heroMarqueeWrapper) {
+        // Pause animation on hover
+        heroMarqueeWrapper.addEventListener('mouseenter', () => {
+            heroMarquee.classList.add('paused');
         });
-    }, { threshold: 0.1 });
 
-    observer.observe(heroVisual);
-
-    // Start animation
-    animate();
-}
-
-// ============================================
-// LOGO CAROUSEL PAUSE ON HOVER
-// ============================================
-
-const heroMarquee = document.querySelector('.hero-marquee');
-const heroMarqueeWrapper = document.querySelector('.hero-marquee-wrapper');
-
-if (heroMarquee && heroMarqueeWrapper) {
-    // Pause animation on hover
-    heroMarqueeWrapper.addEventListener('mouseenter', () => {
-        heroMarquee.classList.add('paused');
-    });
-
-    // Resume animation when mouse leaves
-    heroMarqueeWrapper.addEventListener('mouseleave', () => {
-        heroMarquee.classList.remove('paused');
-    });
-}
+        // Resume animation when mouse leaves
+        heroMarqueeWrapper.addEventListener('mouseleave', () => {
+            heroMarquee.classList.remove('paused');
+        });
+    }
+});
