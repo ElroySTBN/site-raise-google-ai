@@ -435,8 +435,11 @@ p {
     position: relative;
     height: 600px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    /* Align to top to control head position */
     justify-content: center;
+    padding-top: 4rem;
+    /* Push down to align head with badge */
 }
 
 .hero-img-main {
@@ -447,6 +450,35 @@ p {
     box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.2);
     transform: perspective(1000px) rotateY(-5deg);
     transition: transform 0.5s;
+}
+
+/* Hero Character - New Design */
+.hero-character {
+    height: auto;
+    max-height: 500px;
+    /* Increased slightly to reach CTA */
+    width: auto;
+    max-width: 100%;
+    z-index: 2;
+    position: relative;
+    filter: drop-shadow(0 20px 40px rgba(0, 94, 184, 0.2));
+    opacity: 0;
+    /* Initial state for animation */
+    transform: scale(0.9) translateY(30px);
+    /* Initial state */
+}
+
+.hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at center, rgba(56, 189, 248, 0.2) 0%, rgba(0, 94, 184, 0.05) 40%, transparent 70%);
+    z-index: 1;
+    filter: blur(40px);
+    pointer-events: none;
 }
 
 .hero-img-main:hover {
@@ -1778,30 +1810,28 @@ p {
         height: auto !important;
     }
 
-    /* Three.js Container - Mobile Optimization */
-    #threejs-container {
-        opacity: 1 !important;
-        display: block !important;
-        visibility: visible !important;
-        z-index: 1 !important;
+
+
+    /* Mobile Responsiveness for Hero Character */
+    @media (max-width: 768px) {
+        .hero-character {
+            max-height: 400px;
+            /* Smaller on mobile */
+            max-width: 90%;
+        }
+
+        .hero-visual {
+            height: auto !important;
+            min-height: auto !important;
+            margin-top: 2rem !important;
+            margin-bottom: 0 !important;
+            overflow: visible !important;
+            padding-top: 0 !important;
+            /* Reset desktop padding */
+        }
     }
 
-    #threejs-container canvas {
-        display: block !important;
-        visibility: visible !important;
-    }
-
-    /* Hide or Reposition Floating Cards on Mobile to prevent overflow */
-    .floating-card {
-        display: none !important;
-        /* Hiding them on mobile is safest for overflow */
-    }
-
-    /* Keep badges but ensure they don't overflow */
-    /* Hide badges on mobile to clear view of character */
-    .floating-badge {
-        display: none !important;
-    }
+    /* Floating elements removed */
 
     .floating-badge:nth-child(1) {
         top: 60% !important;

@@ -84,66 +84,31 @@ gsap.utils.toArray('.stat-data-card').forEach((card, index) => {
 });
 
 // ============================================
-// FLOATING CARDS ANIMATIONS (Hero)
+// HERO CHARACTER ANIMATION (New Design)
 // ============================================
 
-const floatingCard1 = document.querySelector('.floating-card-1');
-const floatingCard2 = document.querySelector('.floating-card-2');
+const heroCharacter = document.querySelector('.hero-character');
 
-if (floatingCard1 && floatingCard2) {
-    // Base floating animation
-    gsap.to(floatingCard1, {
-        y: -15,
-        x: 8,
-        rotation: 2,
-        duration: 3,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true
+if (heroCharacter) {
+    // 1. Entrance Animation
+    gsap.to(heroCharacter, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1.2,
+        ease: 'power3.out',
+        delay: 0.2
     });
 
-    gsap.to(floatingCard2, {
-        y: -12,
-        x: -6,
-        rotation: -2,
+    // 2. Breathing Animation (Loop)
+    gsap.to(heroCharacter, {
+        y: -15,
         duration: 4,
         ease: 'sine.inOut',
         repeat: -1,
-        yoyo: true
+        yoyo: true,
+        delay: 1.4 // Start after entrance
     });
-
-    // Parallax effect on mouse move
-    const heroVisual = document.querySelector('.hero-visual');
-    if (heroVisual) {
-        heroVisual.addEventListener('mousemove', (e) => {
-            const rect = heroVisual.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
-            const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
-
-            gsap.to(floatingCard1, {
-                x: x * 0.5,
-                y: y * 0.5,
-                duration: 0.5,
-                ease: 'power2.out'
-            });
-
-            gsap.to(floatingCard2, {
-                x: x * -0.3,
-                y: y * -0.3,
-                duration: 0.5,
-                ease: 'power2.out'
-            });
-        });
-
-        heroVisual.addEventListener('mouseleave', () => {
-            gsap.to([floatingCard1, floatingCard2], {
-                x: 0,
-                y: 0,
-                duration: 0.8,
-                ease: 'power2.out'
-            });
-        });
-    }
 }
 
 // ============================================
