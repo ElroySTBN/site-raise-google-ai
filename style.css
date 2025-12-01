@@ -713,60 +713,47 @@ p {
     color: #fff;
 }
 
-/* Hero Marquee */
+/* Hero Marquee - Rebuilt */
 .hero-marquee-container {
-    margin-top: 0;
-    /* Removed padding/gap */
     width: 100%;
+    overflow: hidden;
     position: relative;
+    padding: 2rem 0;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.5));
 }
 
 .hero-marquee-wrapper {
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 24px;
-    padding: 2rem 0;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 10px 40px rgba(0, 94, 184, 0.05);
+    width: 100%;
     overflow: hidden;
-    position: relative;
-    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
-.hero-marquee {
+.marquee-track {
     display: flex;
-    gap: 2rem;
     width: max-content;
-    animation: scroll 18s linear infinite;
+    gap: 4rem;
+    animation: scroll 30s linear infinite;
 }
 
-.hero-marquee.paused {
-    animation-play-state: paused;
-}
-
-.hero-marquee img {
-    height: 180px;
-    /* Increased size significantly */
-    width: auto;
-    min-width: auto;
-    /* Prevent squashing */
-    filter: grayscale(100%) brightness(0.3) contrast(1.2);
-    opacity: 0.7;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    user-select: none;
-    -webkit-user-select: none;
-    pointer-events: none;
-    /* Prevents dragging and clicking */
+.marquee-item {
     flex-shrink: 0;
-    /* Prevent shrinking */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.hero-marquee img:hover {
-    filter: grayscale(0%) brightness(1) contrast(1);
-    opacity: 1;
-    transform: scale(1.05);
+.marquee-item img {
+    height: 60px !important;
+    /* Override global mobile img rule */
+    width: auto !important;
+    filter: grayscale(100%) opacity(0.7);
+    transition: all 0.3s ease;
+}
+
+.marquee-item img:hover {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.1);
 }
 
 @keyframes scroll {
@@ -789,6 +776,8 @@ p {
 }
 
 /* VS Badge */
+/* VS Badge - Removed to avoid duplication with HTML */
+/*
 .comparison-grid::before {
     content: 'VS';
     position: absolute;
@@ -809,6 +798,7 @@ p {
     border: 4px solid var(--bg-body);
     font-size: 1.2rem;
 }
+*/
 
 .comparison-card {
     flex: 1;
@@ -1773,7 +1763,10 @@ p {
         min-height: 500px !important;
         overflow: visible !important;
         /* Allow 3D scene to show */
-        margin-top: 1rem !important;
+        margin-top: -2rem !important;
+        /* Pull character up */
+        margin-bottom: -4rem !important;
+        /* Pull content below up */
         display: flex;
         justify-content: center;
         position: relative;
@@ -1819,36 +1812,7 @@ p {
     }
 
     /* 3. Logo Carousel - Mobile Fixes */
-    .hero-marquee-container {
-        margin-top: 3rem !important;
-        width: 100% !important;
-        overflow: hidden !important;
-        padding: 0 !important;
-    }
-
-    .hero-marquee-wrapper {
-        padding: 1rem 0 !important;
-        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    }
-
-    .hero-marquee {
-        display: flex !important;
-        gap: 2rem !important;
-        animation: scroll 20s linear infinite !important;
-        /* Ensure animation plays on mobile */
-    }
-
-    .hero-marquee img {
-        height: 40px !important;
-        /* Larger logos on mobile - doubled from 24px */
-        margin: 0 1rem !important;
-        max-width: 120px !important;
-        /* Increased max width */
-        object-fit: contain !important;
-        filter: brightness(0.3) contrast(1.2) !important;
-        opacity: 0.8 !important;
-    }
+    /* Removed obsolete overrides that were breaking the new marquee */
 
     /* 4. General Layout Safety */
     .container {
@@ -1939,6 +1903,34 @@ p {
 
     .progress-step-label {
         font-size: 0.8rem !important;
+    }
+
+    /* Fix Alert Popup Spacing on Mobile */
+    .alert-popup {
+        margin-top: 5rem !important;
+        padding: 2rem 1.5rem !important;
+        overflow: visible !important;
+        transform: scale(0.95);
+        width: 100% !important;
+    }
+
+    .alert-popup h4 {
+        font-size: 1.2rem !important;
+        line-height: 1.3;
+    }
+
+    /* Fix Guarantee Card Overflow on Mobile */
+    .section-title+p+.card {
+        padding: 1.5rem !important;
+    }
+
+    .section-title+p+.card h3 {
+        font-size: 1.5rem !important;
+        word-wrap: break-word;
+    }
+
+    .section-title+p+.card p {
+        font-size: 1rem !important;
     }
 }
 
